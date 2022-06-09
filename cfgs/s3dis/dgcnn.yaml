@@ -1,0 +1,27 @@
+# GFLOPs  GMACs   Params.(M)
+#  90.41   44.93   1.278
+# Throughput (ins./s): 8.02392738104905 
+
+model:
+  NAME: BaseSeg
+  encoder_args:
+    NAME: DGCNN
+    in_channels: 4 
+    channels: 64
+    emb_dims: 1024
+    n_blocks: 5 
+    conv: 'edge'
+    block: 'res'
+    k: 20 
+    is_seg: True
+  cls_args:
+    NAME: SegHead
+    num_classes: 13
+    mlps: [512, 256]
+    act_args: leakyrelu
+
+
+batch_size: 8
+dataset:
+  train:
+    voxel_max: 10000
