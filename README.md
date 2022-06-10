@@ -156,7 +156,7 @@ The code and models of ShapeNetPart will come soon.
 
 ### Visualization
 
-More exampless are available in the [paper](). 
+More exampless are available in the [paper](https://arxiv.org/abs/2206.04670). 
 
 ![s3dis](misc/s3dis_vis.png)
 ![shapenetpart](misc/shapenetpart_vis.png)
