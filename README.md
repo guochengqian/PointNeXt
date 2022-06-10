@@ -1,5 +1,5 @@
 # PointNeXt & OpenPoints Library
-
+[Preprint](https://arxiv.org/abs/2206.04670) | [Code](https://github.com/guochengqian/PointNeXt)
 
 <p align="center">
 <img src="misc/effects_training_scaling.png" width=85% height=85% class="center">
@@ -10,6 +10,7 @@ Official PyTorch implementation of PointNeXt, for the following paper:
 *PointNeXt: Revisiting PointNet++ with Improved Training and Scaling Strategies*
 
 *by [Guocheng Qian](https://www.gcqian.com/), [Yuchen Li](https://cemse.kaust.edu.sa/vision-cair/people/person/yuchen-li), [Houwen Peng](https://houwenpeng.com/), [Jinjie Mai](https://cemse.kaust.edu.sa/people/person/jinjie-mai), [Hasan Hammoud](https://cemse.kaust.edu.sa/ece/people/person/hasan-abed-al-kader-hammoud), [Mohamed Elhoseiny](http://www.mohamed-elhoseiny.com/), [Bernard Ghanem](https://www.bernardghanem.com/)*
+
 
 **TL;DR:** In PointNeXt, we propose improved training and model scaling strategies to boost PointNet++ to the state-of-the-art level. PointNet++ with the proposed model scaling is named as PointNeXt, the next version of PointNets. 
 
@@ -170,16 +171,11 @@ This library is inspired by [PyTorch-image-models](https://github.com/rwightman/
 ### Citation
 
 ```tex
-
-```
-
-```tex
-@article{qian2021assanet,
-  title={ASSANet: An Anisotropic Separable Set Abstraction for Efficient Point Cloud Representation Learning},
-  author={Qian, Guocheng and Hammoud, Hasan and Li, Guohao and Thabet, Ali and Ghanem, Bernard},
-  journal=NeurIPS,
-  volume={34},
-  year={2021}
+@Article{qian2022pointnext,
+  author  = {Qian, Guocheng and Li, Yuchen and Peng, Houwen and Mai, Jinjie and Hammoud, Hasan and Elhoseiny, Mohamed and Ghanem, Bernard},
+  journal = {arXiv:2206.04670},
+  title   = {PointNeXt: Revisiting PointNet++ with Improved Training and Scaling Strategies},
+  year    = {2022},
 }
 ```
 
