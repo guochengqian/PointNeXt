@@ -13,8 +13,11 @@ CUDA_VISIBLE_DEVICES=1 bash script/main_classification.sh cfgs/modelnet40ply2048
 ```
 
 ## Test
+
+test `PointNeXt-S (C=64)`
+
 ```bash
-CUDA_VISIBLE_DEVICES=1 bash script/main_classification.sh cfgs/modelnet40ply2048/pointnext-s.yaml wandb.use_wandb=False mode=test --pretrained_path /path/to/your/pretrained_model
+CUDA_VISIBLE_DEVICES=1 bash script/main_classification.sh cfgs/modelnet40ply2048/pointnext-s.yaml model.encoder_args.width=64 wandb.use_wandb=False mode=test --pretrained_path /path/to/your/pretrained_model
 ```
 
 ## Reference 
