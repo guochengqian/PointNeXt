@@ -24,7 +24,7 @@ Step by step installation
 
         .. code-block:: none
             
-            git submodule update --remote
+            git submodule update --init --recursive
 
 
 #. Ensure that your CUDA is setup correctly (optional):

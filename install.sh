@@ -13,7 +13,7 @@ module load gcc
 # make sure local cuda version is 11.1
 
 # download openpoints
-git submodule update --remote
+git submodule update --init --recursive
 
 # install PyTorch
 conda deactivate
