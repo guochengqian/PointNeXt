@@ -20,6 +20,13 @@ One step installation from bash file
 Step by step installation
 -------------------------
 
+# . Download openpoints
+
+        .. code-block:: none
+            
+            git submodule update --remote
+
+
 #. Ensure that your CUDA is setup correctly (optional):
     #. Add CUDA to :obj:`$PATH` and :obj:`$CPATH` (note that your actual CUDA path may vary from :obj:`/usr/local/cuda`):
 

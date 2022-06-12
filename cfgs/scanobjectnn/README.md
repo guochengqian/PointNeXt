@@ -15,8 +15,10 @@ There are three ways to download the data:
 3. Or, one can only download the hardest variant by the following link. Please cite their paper[1] if you use the link to download the data
 
     ```bash
+    mkdir data
+    cd data
     gdown https://drive.google.com/uc?id=1iM3mhMJ_N0x5pytcP831l3ZFwbLmbwzi
-    tar ScanObjectNN.zip
+    tar -xvf ScanObjectNN.tar
     ```
 
 Organize the dataset as follows:
