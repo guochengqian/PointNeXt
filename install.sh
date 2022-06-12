@@ -30,7 +30,7 @@ pip install -r requirements.txt
 # install cpp extensions, the pointnet++ library
 cd openpoints/cpp/pointnet2_batch
 python setup.py install
-cd ../../../
+cd ../
 
 # grid_subsampling library. necessary only if interested in S3DIS_sphere
 cd subsampling
@@ -44,8 +44,7 @@ python setup.py install
 cd ..
 
 
-# Blow are functions that optional. 
-# chamfer distance, and EMD distance for construction tasks
+# Blow are functions that optional. Necessary only if interested in reconstruction tasks such as completion
 cd chamfer_dist
 python setup.py install --user
 cd ../emd

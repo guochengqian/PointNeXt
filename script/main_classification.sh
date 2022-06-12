@@ -48,7 +48,7 @@ python examples/classification/main.py --cfg $cfg  wandb.use_wandb=True ${PY_ARG
 # sbatch --array=0-2 --gres=gpu:1 --time=10:00:00 main_classification.sh cfgs/scaobjetnn/pointnext-s.yaml
 
 # if using local machine with GPUs, train PointNeXt-S on scanobjectnn classification using all GPUs
-# bash main_classification.sh cfgs/scaobjetnn/pointnext-s.yaml
+# bash script/main_classification.sh cfgs/scaobjetnn/pointnext-s.yaml
 
 # if using local machine with GPUs, train PointNeXt-S on scanobjectnn classification using only 1 GPU
-# CUDA_VISIBLE_DEVICES=1 bash main_classification.sh cfgs/scaobjetnn/pointnext-s.yaml
+# CUDA_VISIBLE_DEVICES=1 bash script/main_classification.sh cfgs/scaobjetnn/pointnext-s.yaml

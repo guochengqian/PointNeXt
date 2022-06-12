@@ -1,0 +1,47 @@
+model:
+  NAME: BaseCls
+  encoder_args:
+    NAME: PointViT
+    in_channels: 4
+    embed_dim: 384
+    depth: 12
+    num_heads: 6
+    mlp_ratio: 4.
+    drop_rate: 0.
+    attn_drop_rate: 0.1  # do not use if add_pos_each_block=False
+    drop_path_rate: 0.1 # do not use if add_pos_each_block=False 
+    add_pos_each_block: True # use this is 0.2 OA better 
+    qkv_bias: True
+    act_args:
+      act: 'gelu' # better than relu
+    norm_args:
+      norm: 'ln'
+      eps: 1.0e-6
+    embed_args:
+      NAME: 'pointpatchembed' # the best. 
+      feature_type: 'dp_df' # the best. 0.3 gain over dp_fj. and 2.0 gain over dp
+      anisotropic: False
+      reduction: 'max'
+      sample_ratio: 0.25  # the best
+      normalize_dp: True
+      group_size: 32
+      subsample: 'fps' # random, FPS
+      group: 'knn'  # change it to group args. 
+      conv_args:
+        order: conv-norm-act
+      layers: 4
+    tokens: cls,max,avg
+  cls_args: 
+    NAME: ClsHead
+    num_classes: 15
+    mlps: [512, 256]
+    norm_args: 
+      norm: 'bn1d'
+
+mode: finetune_encoder
+lr: 5.0e-4 # TODO: different lr for encoder and others.
+
+only_encoder: True # only load the encoder for finetuning
+log_dir: log/scanobject/pixel2point
+wandb:
+  project: Pixel2Point-ScanObjectNN

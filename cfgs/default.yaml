@@ -4,13 +4,11 @@ dist_backend: 'nccl'
 multiprocessing_distributed: False
 ngpus_per_node: 1
 world_size: 1
-train_gpu: [0, 1, 2, 3]
 launcher: 'mp'
 local_rank: 0
 
 use_gpu: True
 seed: null 
-
 
 # ---------------------------------------------------------------------------- #
 # Training cfgs
@@ -22,6 +20,7 @@ sync_bn: False
 
 criterion:
   NAME: CrossEntropy
+use_mask: False # in some datasets, requiring data mask in input
 
 grad_norm_clip: null
 layer_decay: 0 # no layer decay by default
@@ -30,7 +29,6 @@ step_per_update: 1
 start_epoch: 1 
 sched_on_epoch: True
 
-
 # We support wandb for online results collection, please check their documentation for details: https://docs.wandb.ai/
 wandb:
   use_wandb: True
@@ -38,9 +36,8 @@ wandb:
 # ---------------------------------------------------------------------------- #
 # Evaluation cfgs
 # ---------------------------------------------------------------------------- #
-use_voting: False # we do not use any voting. Voting is not a good practice for fair comprasion. 
+use_voting: False # we do not use any voting. Voting is not a good practice 
 val_freq: 10
-
 
 # ---------------------------------------------------------------------------- #
 # io and misc
@@ -67,13 +64,3 @@ pretrained_path: null
 datatransforms:
   train: null
   val: null
-
-## ---------------------------------------------------------------------------- #
-## DeepSpeed
-## ---------------------------------------------------------------------------- #
-#ds_config:
-#  train_micro_batch_size_per_gpu: 2
-#  gradient_accumulation_steps: 1,
-#  fp16:
-#    enabled: true
-#  zero_optimization: true

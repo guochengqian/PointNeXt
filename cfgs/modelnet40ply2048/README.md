@@ -9,12 +9,12 @@ ModelNet40 dataset will be downloaded automatically.
 ## Train
 For example, train `PointNeXt-S`
 ```bash
-CUDA_VISIBLE_DEVICES=1 bash main_classification.sh cfgs/modelnet40ply2048/pointnext-s.yaml
+CUDA_VISIBLE_DEVICES=1 bash script/main_classification.sh cfgs/modelnet40ply2048/pointnext-s.yaml
 ```
 
 ## Test
 ```bash
-CUDA_VISIBLE_DEVICES=1 bash main_classification.sh cfgs/modelnet40ply2048/pointnext-s.yaml wandb.use_wandb=False mode=test --pretrained_path /path/to/your/pretrained_model
+CUDA_VISIBLE_DEVICES=1 bash script/main_classification.sh cfgs/modelnet40ply2048/pointnext-s.yaml wandb.use_wandb=False mode=test --pretrained_path /path/to/your/pretrained_model
 ```
 
 ## Reference 

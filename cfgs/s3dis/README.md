@@ -1,18 +1,20 @@
 # Indoor Point cloud Segmentation on S3DIS
-The models are trained on the **subsampled** point clouds (voxel size = 0.04) and validated on the subsampled point clouds. The model achieving the best performance on validation is selected to test on the **original** point clouds (not downsampled). 
+The models are trained on the **subsampled** point clouds (voxel size = 0.04). The model achieving the best performance on validation is selected to test on the **original** point clouds (not downsampled). 
 
 
 
-# Dataset
+## Dataset
 
-Please cite the S3DIS paper [1] if you are going to use our presampled datasets.  The presampling is just to collect all point cloud, area by area and room by room, following [PointGroup](https://github.com/dvlab-research/PointGroup).
+Please cite the S3DIS paper [1] if you are going to use our presampled datasets.  The presampling is just to collect all point clouds, area by area and room by room, following [PointGroup](https://github.com/dvlab-research/PointGroup).
 
-```
+```bash
+mkdir -p data/S3DIS/
+cd data/S3DIS
 gdown https://drive.google.com/uc?id=1MX3ZCnwqyRztG1vFRiHkKTz68ZJeHS4Y
 tar -xvf s3dis.tar
 ```
 
-Organize the dataset as following:
+Organize the dataset as follows:
 
 ```
 data
@@ -26,24 +28,23 @@ data
 ```
 
 
-## 
-
-
 ## Train
 
 For example, train `PointNext-XL`
 ```bash
-CUDA_VISIBLE_DEVICES=1 bash main_segmentation.sh cfgs/s3dis/pointnext-xl.yaml
+CUDA_VISIBLE_DEVICES=1 bash script/main_segmentation.sh cfgs/s3dis/pointnext-xl.yaml
 ```
-* Run command at the root directory of this repo
+* change the cfg file to use any other model, *e.g.* `cfgs/scanobjectnn/pointnet++.yaml` for training PointNet++  
+* run the command at the root directory
 
 
 ## Test on Area 5
+Note **testing is a must step** since evaluation in training is performed only on subsampled point clouds not original point clouds. 
 
 ```bash
-CUDA_VISIBLE_DEVICES=1 bash main_segmentation.sh cfgs/s3dis/pointnext-xl.yaml wandb.use_wandb=False mode=test --pretrained_path pretrained/s3dis/pointnext-xl/pointnext-xl-area5/checkpoint/pointnext-xl_ckpt_best.pth
+CUDA_VISIBLE_DEVICES=1 bash script/main_segmentation.sh cfgs/s3dis/pointnext-xl.yaml wandb.use_wandb=False mode=test --pretrained_path pretrained/s3dis/pointnext-xl/pointnext-xl-area5/checkpoint/pointnext-xl_ckpt_best.pth
 ```
-
+* add `visualize=True` to save segmentation results as .obj files
 
 
 ## Test on All Areas

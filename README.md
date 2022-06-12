@@ -1,10 +1,10 @@
-# PointNeXt & OpenPoints Library
+# PointNeXt
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/pointnext-revisiting-pointnet-with-improved/semantic-segmentation-on-s3dis)](https://paperswithcode.com/sota/semantic-segmentation-on-s3dis?p=pointnext-revisiting-pointnet-with-improved)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/pointnext-revisiting-pointnet-with-improved/3d-point-cloud-classification-on-scanobjectnn)](https://paperswithcode.com/sota/3d-point-cloud-classification-on-scanobjectnn?p=pointnext-revisiting-pointnet-with-improved)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/pointnext-revisiting-pointnet-with-improved/semantic-segmentation-on-s3dis-area5)](https://paperswithcode.com/sota/semantic-segmentation-on-s3dis-area5?p=pointnext-revisiting-pointnet-with-improved)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/pointnext-revisiting-pointnet-with-improved/3d-point-cloud-classification-on-modelnet40)](https://paperswithcode.com/sota/3d-point-cloud-classification-on-modelnet40?p=pointnext-revisiting-pointnet-with-improved)
 
-[Preprint](https://arxiv.org/abs/2206.04670) | [Code](https://github.com/guochengqian/PointNeXt)
+[arXiv](https://arxiv.org/abs/2206.04670) | [OpenPoints Library](https://github.com/guochengqian/openpoints)
 
 <p align="center">
 <img src="misc/effects_training_scaling.png" width=85% height=85% class="center">
@@ -12,27 +12,30 @@
 
 Official PyTorch implementation of PointNeXt, for the following paper:
 
-*PointNeXt: Revisiting PointNet++ with Improved Training and Scaling Strategies*
+**PointNeXt: Revisiting PointNet++ with Improved Training and Scaling Strategies**
 
 *by [Guocheng Qian](https://www.gcqian.com/), [Yuchen Li](https://cemse.kaust.edu.sa/vision-cair/people/person/yuchen-li), [Houwen Peng](https://houwenpeng.com/), [Jinjie Mai](https://cemse.kaust.edu.sa/people/person/jinjie-mai), [Hasan Hammoud](https://cemse.kaust.edu.sa/ece/people/person/hasan-abed-al-kader-hammoud), [Mohamed Elhoseiny](http://www.mohamed-elhoseiny.com/), [Bernard Ghanem](https://www.bernardghanem.com/)*
 
-
-**TL;DR:** In PointNeXt, we propose improved training and model scaling strategies to boost PointNet++ to the state-of-the-art level. PointNet++ with the proposed model scaling is named as PointNeXt, the next version of PointNets. 
+**TL;DR:** We propose improved training and model scaling strategies to boost PointNet++ to state-of-the-art level. PointNet++ with the proposed model scaling is named as PointNeXt, the next version of PointNets. 
 
 
 <p align="center">
 <img src="misc/pointnext.jpeg" width=85% height=85% class="center">
 </p>
 
+## News
+-  :pushpin:  [Houwen Peng](https://houwenpeng.com/) is hiring research interns at Microsoft Research Asia. Contact: houwen.peng@microsoft.com 
+-  :pushpin:  [Bernard Ghanem](https://www.bernardghanem.com/) is hiring visiting students. Monthly salary is paid with free housing. Contact Guocheng if interested: guocheng.qian@kaust.edu.sa
+-  2022/06/12: Code released
 
-## Features of OpenPoints Library
-In the PointNeXt project, we propose a new and flexible codebase for point-based methods, namely **OpenPoints**. The biggest difference between OpenPoints and other libraries is that we focus more on reproducibility and fair benchmarking. 
+## Features
+In the PointNeXt project, we propose a new and flexible codebase for point-based methods, namely [**OpenPoints**](https://github.com/guochengqian/openpoints). The biggest difference between OpenPoints and other libraries is that we focus more on reproducibility and fair benchmarking. 
 
-1. **Extensibility**: support many representative networks for point cloud understanding, such as *PointNet, DGCNN, DeepGCN, PointNet++, ASSANet, PointMLP*, and our ***PointNeXt***. More networks can be built easily based on our framework since OpenPoints support a wide range of basic operations including graph convolutions, self-attention, farthest point sampling, ball query, *e.t.c*.
+1. **Extensibility**: supports many representative networks for point cloud understanding, such as *PointNet, DGCNN, DeepGCN, PointNet++, ASSANet, PointMLP*, and our ***PointNeXt***. More networks can be built easily based on our framework since OpenPoints support a wide range of basic operations including graph convolutions, self-attention, farthest point sampling, ball query, *e.t.c*.
 
-2. **Reproducibility**: all implemented models are trained on various tasks by at least three times. *Pretrained models and logs* are available.
+2. **Reproducibility**: all implemented models are trained on various tasks at least three times. Mean±std is provided in the [PointNeXt paper](https://arxiv.org/abs/2206.04670).  *Pretrained models and logs* are available.
 
-3. **Fair Benchmarking**: in PointNeXt, we find a large part of performance gain is due to the training strategies. In this library, all models are trained with the improved training strategies and all achieve much higher accuracy than the original reported value. 
+3. **Fair Benchmarking**: in PointNeXt, we find a large part of performance gain is due to the training strategies. In OpenPoints, all models are trained with the improved training strategies and all achieve much higher accuracy than the original reported value. 
 
 4. **Ease of Use**: *Build* model, optimizer, scheduler, loss function,  and data loader *easily from cfg*. Train and validate different models on various tasks by simply changing the `cfg\*\*.yaml` file. 
 
@@ -56,23 +59,23 @@ In the PointNeXt project, we propose a new and flexible codebase for point-based
          norm: 'bn1d'
    ```
 
-   
-
 5. **Online logging**: *Support [wandb](https://wandb.ai/)* for checking your results anytime anywhere. 
 
    ![misc/wandb.png](misc/wandb.png)
 
 
-## Install
+## Installation
 
-Install by
 ```
+git clone git@github.com:guochengqian/PointNeXt.git
+cd PointNeXt
+git clone git@github.com:guochengqian/OpenPoints.git # A certain branch
 source install.sh
 ```
 Note:  
 
-1) the `install.sh` requires CUDA 11.1; if another version of CUDA is used,  `install.sh` has to be modified accordingly;
-2) you might need read the `install.rst` for a step-by-step installation if the bash file (`install.sh`) does not work for you by any chance;
+1) the `install.sh` requires CUDA 11.1; if another version of CUDA is used,  `install.sh` has to be modified accordingly; check your CUDA version by: `nvcc --version` before using the bash file;
+2) you might need to read the `install.rst` for a step-by-step installation if the bash file (`install.sh`) does not work for you by any chance;
 3) for all experiments, we use wandb for online logging by default. Run `wandb --login` only at the first time in a new machine, or set `wandn.use_wandb=False` if you do not want to use wandb. Read the [official wandb documentation](https://docs.wandb.ai/quickstart) if needed.
 
 
@@ -86,13 +89,13 @@ For example,
 * Train and validate on S3DIS for 3D segmentation, check [`cfgs/s3dis/README.md`](cfgs/s3dis/README.md)
 
 Note:  
-1. We use *yaml* to support training and validation using different models on different datasets. Just use `.yaml` file accordingly. For example, train on ScanObjectNN using PointNeXt: `CUDA_VISIBLE_DEVICES=1 bash main_classification.sh cfgs/scanobjectnn/pointnext-s.yaml`, train on S3DIS using ASSANet-L: `CUDA_VISIBLE_DEVICES=1 bash main_segmentation.sh cfgs/s3dis/assanet-l.yaml`.  
-
+1. We use *yaml* to support training and validation using different models on different datasets. Just use `.yaml` file accordingly. For example, train on ScanObjectNN using PointNeXt: `CUDA_VISIBLE_DEVICES=1 bash script/main_classification.sh cfgs/scanobjectnn/pointnext-s.yaml`, train on S3DIS using ASSANet-L: `CUDA_VISIBLE_DEVICES=1 bash script/main_segmentation.sh cfgs/s3dis/assanet-l.yaml`.  
+2. Check the default arguments of each .yaml file. You can overwrite them simply through the command line. E.g. overwrite the batch size, just appending `batch_size=32` or `--batch_size 32`.  
 
 
 ## Model Zoo
 
-We provide the **training logs & pretrained models** in column `our released`  *trained with the improved training strategies proposed by our PointNeXt* through anonymous Google shared links. 
+We provide the **training logs & pretrained models** in column `our released`  *trained with the improved training strategies proposed by our PointNeXt* through Google Drive. 
 
 *TP*: Throughput (instance per second) measured using an NVIDIA Tesla V100 32GB GPU and a 32 core Intel Xeon @ 2.80GHz CPU.
 
@@ -112,7 +115,6 @@ Throughput is measured with 128 x 1024 points.
 
 ### S3IDS (6-fold) Segmentation
 
-<!-- Note that there will be a small variance (around 0.2) in testing.  -->
 Throughput (TP) is measured with 16 x 15000 points.
 
 |     name     | mIoU/OA/mAcc (Original) | mIoU/OA/mAcc (our released) | #params | FLOPs |  TP  |
@@ -161,20 +163,20 @@ The code and models of ShapeNetPart will come soon.
 
 ### Visualization
 
-More exampless are available in the [paper](https://arxiv.org/abs/2206.04670). 
+More examples are available in the [paper](https://arxiv.org/abs/2206.04670). 
 
 ![s3dis](misc/s3dis_vis.png)
 ![shapenetpart](misc/shapenetpart_vis.png)
 
 
 
-### Acknowledment
+### Acknowledgment
 This library is inspired by [PyTorch-image-models](https://github.com/rwightman/pytorch-image-models) and [mmcv](https://github.com/open-mmlab/mmcv). 
 
 
 
 ### Citation
-
+If you find PointNeXt or the OpenPoints codebase is useful, please cite:
 ```tex
 @Article{qian2022pointnext,
   author  = {Qian, Guocheng and Li, Yuchen and Peng, Houwen and Mai, Jinjie and Hammoud, Hasan and Elhoseiny, Mohamed and Ghanem, Bernard},
@@ -183,4 +185,3 @@ This library is inspired by [PyTorch-image-models](https://github.com/rwightman/
   year    = {2022},
 }
 ```
-

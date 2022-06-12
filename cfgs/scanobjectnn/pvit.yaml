@@ -1,0 +1,39 @@
+model:
+  NAME: BaseCls
+  encoder_args:
+    NAME: PointViT
+    in_channels: 4
+    embed_dim: 384
+    depth: 12
+    num_heads: 6
+    mlp_ratio: 4.
+    drop_rate: 0.
+    attn_drop_rate: 0.
+    drop_path_rate: 0.1
+    add_pos_each_block: False
+    qkv_bias: True
+    act_args:
+      act: 'gelu'
+    norm_args:
+      norm: 'ln'
+      eps: 1.0e-6
+    embed_args:
+      NAME: 'pointpatchembed'
+      feature_type: 'dp'
+      anisotropic: False
+      reduction: 'max'
+      sample_ratio: 0.25
+      group_size: 32
+      subsample: 'fps' # random, FPS
+      group: 'knn'
+      conv_args:
+        order: conv-norm-act
+      layers: 4
+  cls_args: 
+    NAME: ClsHead
+    num_classes: 15
+    mlps: [512, 256]
+    norm_args: 
+      norm: 'bn1d'
+
+lr: 5.0e-4

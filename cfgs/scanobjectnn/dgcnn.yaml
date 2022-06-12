@@ -19,7 +19,7 @@ model:
   cls_args:
     NAME: ClsHead
     num_classes: 15
-    mlps: [ 512,256 ]
+    mlps: [512, 256]
     norm_args:
       norm: 'bn1d'
 

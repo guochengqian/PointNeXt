@@ -25,7 +25,7 @@ model:
     group_args:
       NAME: 'ballquery'
       use_xyz: True
-      normalize_xyz: False
+      normalize_dp: False
     conv_args: 
       order: conv-norm-act
     act_args:

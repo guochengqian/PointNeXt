@@ -45,8 +45,7 @@ val_fn: validate
 ignore_index: null 
 epochs: 100
 
-use_mask: False # mask does not improve the performance 
-use_weight: False
+cls_weighed_loss: False
 
 criterion:
   NAME: CrossEntropy
@@ -73,4 +72,4 @@ save_freq: -1 # save epoch every xxx epochs, -1 only save last and best.
 val_freq: 1
 
 wandb:
-  project: PointNetSSG-S3DIS
+  project: PointNeXt-S3DIS

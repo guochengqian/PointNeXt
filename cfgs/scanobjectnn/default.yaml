@@ -25,6 +25,7 @@ datatransforms:
     gravity_dim: 1
 
 batch_size: 32
+val_batch_size: 64 
 dataloader:
   num_workers: 6
 
@@ -56,10 +57,8 @@ grad_norm_clip: 10
 log_dir: 'scanobjectnn'
 print_freq: 10
 val_freq: 1
-only_encoder: True # only load the encoder for finetuning
 # ----------------- Model related
-val_batch_size: 64 
 pretrained_path: null 
 
 wandb:
-  project: PointNetSSG-ScanObjectNN
+  project: PointNeXt-ScanObjectNN

@@ -7,7 +7,6 @@ model:
   NAME: BaseSeg
   encoder_args:
     NAME: PointNextEncoder
-    
     blocks: [1, 2, 3, 2, 2]
     strides: [1, 4, 4, 4, 4]
     sa_layers: 1 
@@ -22,7 +21,7 @@ model:
       reduction: 'max'
     group_args:
       NAME: 'ballquery'
-      normalize_xyz: True
+      normalize_dp: True
     conv_args:
       order: conv-norm-act
     act_args:
@@ -31,7 +30,6 @@ model:
       norm: 'bn'
   decoder_args:
     NAME: PointNextDecoder
-    decoder_blocks: [1, 1, 1, 1]
   cls_args:
     NAME: SegHead
     num_classes: 13

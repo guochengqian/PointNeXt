@@ -29,7 +29,7 @@ model:
     group_args:
       NAME: 'ballquery'
       use_xyz: True
-      normalize_xyz: True
+      normalize_dp: True
     conv_args:
       order: conv-norm-act
     act_args:
@@ -47,18 +47,6 @@ model:
 # ---------------------------------------------------------------------------- #
 # Data Augmentation 
 # ---------------------------------------------------------------------------- #
-# datatransforms:
-#   train: [ChromaticAutoContrast, PointsToTensor, PointCloudScaling, PointCloudCenterAndNormalize, PointCloudJitter, ChromaticDropGPU, ChromaticNormalize]
-#   val: [PointsToTensor, PointCloudCenterAndNormalize, ChromaticNormalize]
-#   vote: [ChromaticDropGPU]
-#   kwargs:
-#     color_drop: 0.2
-#     gravity_dim: 2
-#     scale: [0.9, 1.1]
-#     angle: [0, 0, 1]
-#     jitter_sigma: 0.005
-#     jitter_clip: 0.02
-#     normalize: False 
 datatransforms:
   train: [ChromaticAutoContrast, PointsToTensor, PointCloudScaling, PointCloudCenterAndNormalize, PointCloudRotation, PointCloudJitter, ChromaticDropGPU, ChromaticNormalize]
   val: [PointsToTensor, PointCloudCenterAndNormalize, ChromaticNormalize]
