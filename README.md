@@ -69,7 +69,6 @@ In the PointNeXt project, we propose a new and flexible codebase for point-based
 ```
 git clone git@github.com:guochengqian/PointNeXt.git
 cd PointNeXt
-git clone git@github.com:guochengqian/OpenPoints.git # A certain branch
 source install.sh
 ```
 Note:  
