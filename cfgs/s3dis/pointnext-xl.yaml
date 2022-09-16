@@ -1,6 +1,6 @@
 # Model Information
-# GFLOPs  GMACs   Params.(M)
-#  84.81   42.16   41.576
+# GFLOPs  Params.(M)
+#  84.81    41.576
 # Throughput (ins./s): 46.06739325463371 
 
 model:

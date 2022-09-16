@@ -1,0 +1,75 @@
+# Batches npoints Params.(M)      GFLOPs
+# 64      2048     0.971   4.89
+# Throughput (ins./s): 708.4981200886108
+
+model:
+  NAME: BasePartSeg
+  encoder_args:
+    NAME: PointNet2Encoder
+    in_channels: 7
+    width: null
+    strides: [2, 2, 2, 2]
+    layers: 3
+    use_res: False
+    mlps: [[[32, 32, 64]],  # stage 1: 96
+        [[64, 64, 128]], # stage 2: 256
+        [[128, 128, 256]], # stage 3: 512
+        [[256, 256, 512]]] # stage 4: 1024
+    radius: 0.1
+    radius_scaling: 1.5
+    num_samples: 32
+    sampler: fps
+    aggr_args:
+      NAME: 'convpool'
+      feature_type: 'dp_fj'
+      anisotropic: False
+      reduction: 'max'
+    group_args:
+      NAME: 'ballquery' # KNNGroup, QueryAndGroup(Ball Query)
+      use_xyz: True
+    conv_args:
+      order: conv-norm-act
+    act_args:
+      act: 'relu'
+    norm_args:
+      norm: 'bn'
+  decoder_args:
+    NAME: PointNet2PartDecoder
+    fp_mlps: [[128, 128, 128], [256, 128], [256, 256], [256, 256]]
+  cls_args:
+    NAME: SegHead
+    num_classes: 50
+    mlps: [128]
+    norm_args:
+      norm: 'bn1d'
+
+feature_keys: pos,x,heights
+
+# ---------------------------------------------------------------------------- #
+# Training cfgs
+# ---------------------------------------------------------------------------- #
+lr: 0.001
+min_lr: null
+optimizer:
+  NAME: adamw
+  weight_decay: 1.0e-4  # the best 
+
+criterion_args:
+  NAME: Poly1FocalLoss
+
+# scheduler
+epochs: 300
+sched: multistep
+decay_epochs: [210, 270]
+decay_rate: 0.1
+warmup_epochs: 0
+
+datatransforms:
+  train: [PointsToTensor, PointCloudScaling,PointCloudCenterAndNormalize,PointCloudJitter,ChromaticDropGPU]
+  val: [PointsToTensor, PointCloudCenterAndNormalize]
+  kwargs:
+    jitter_sigma: 0.001
+    jitter_clip: 0.005
+    scale: [0.8, 1.2]
+    gravity_dim: 1
+    angle: [0, 1.0, 0]

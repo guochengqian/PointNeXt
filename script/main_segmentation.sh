@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 #SBATCH -N 1
-#SBATCH --array=0-2
-#SBATCH -J s3dis
+#SBATCH --array=0 
+#SBATCH -J seg 
 #SBATCH -o slurm_logs/%x.%3a.%A.out
 #SBATCH -e slurm_logs/%x.%3a.%A.err
 #SBATCH --time=10:00:00
-#SBATCH --gres=gpu:1
-#SBATCH --constraint=[v100]
+#SBATCH --gres=gpu:v100:1
 #SBATCH --cpus-per-gpu=6
 #SBATCH --mem=30G
-##SBATCH --mail-type=FAIL,TIME_LIMIT,TIME_LIMIT_90
-
 
 [ ! -d "slurm_logs" ] && echo "Create a directory slurm_logs" && mkdir -p slurm_logs
 
@@ -44,11 +41,11 @@ python examples/segmentation/main.py --cfg $cfg wandb.use_wandb=True ${PY_ARGS}
 
 
 # how to run
-# using slurm, run with 1 GPU:
-# sbatch --array=0-1 --gres=gpu:1 --time=2-00:00:00 train_s3dis.sh cfgs/s3dis/pointnet++.yaml
+# using slurm, run with 1 GPU, by 3 times (array=0-2):
+# sbatch --array=0-2 --gres=gpu:1 --time=12:00:00 script/main_segmentation.sh cfgs/s3dis/pointnext-s.yaml
 
 # if using local machine with GPUs, run with ALL GPUs:
-# bash train_s3dis.sh cfgs/s3dis/pointnet++.yaml
+# bash script/main_segmentation.sh cfgs/s3dis/pointnext-s.yaml 
 
 # local machine, run with 1 GPU:
-# CUDA_VISIBLE_DEVICES=0 bash train_s3dis.sh cfgs/s3dis/pointnet++.yaml
+# CUDA_VISIBLE_DEVICES=0 bash script/main_segmentation.sh cfgs/s3dis/pointnext-s.yaml  

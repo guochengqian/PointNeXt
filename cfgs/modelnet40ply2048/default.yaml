@@ -11,8 +11,10 @@ dataset:
     split: test
     num_points: 1024  # in testing, use uniformly pre-sampled 1024 points for evaluation (following https://github.com/lulutang0608/Point-BERT) 
 
+feature_keys: pos
+
 datatransforms:
-  train: [PointsToTensor, PointCloudScaleAndTranslate]
+  train: [PointsToTensor, PointCloudScaleAndTranslate]  # rotation does not help
   vote: [PointCloudScaleAndTranslate]
   val: [PointsToTensor]
   kwargs:
@@ -44,7 +46,7 @@ optimizer:
 
 grad_norm_clip: 1
 
-criterion:
+criterion_args:
   NAME: SmoothCrossEntropy
   label_smoothing: 0.2
 

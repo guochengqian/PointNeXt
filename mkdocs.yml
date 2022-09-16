@@ -1,0 +1,47 @@
+site_name: 'OpenPoints'
+site_description: 'Library for PointNeXt, ASSANet, Pix4Point, and other point-based methods'
+repo_name: 'guochengqian/pointnext'
+repo_url: 'https://github.com/guochengqian/pointnext'
+nav:
+  - index.md
+  - Examples:
+    - examples/scanobjectnn.md
+    - examples/modelnet.md
+    - examples/shapenetpart.md
+    - examples/s3dis.md
+    - examples/scannet.md
+  - ... | methods/*.md
+  - modelzoo.md
+  - changes.md
+theme:
+  name: 'material'
+  feature:
+    tabs: false
+extra_javascript:
+  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
+  - https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js
+  - javascripts/tables.js
+markdown_extensions:
+  - codehilite:
+      linenums: true
+  - admonition
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - mdx_truly_sane_lists
+plugins:
+  - search
+  - awesome-pages

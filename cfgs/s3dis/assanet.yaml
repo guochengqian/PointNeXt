@@ -20,7 +20,7 @@ model:
     stem_aggr: True
     radius: [[0.1, 0.2], [0.2, 0.4], [0.4, 0.8], [0.8, 1.6]]
     num_samples: [[16, 32], [16, 32], [16, 32], [16, 32]]
-    sample_method: fps
+    sampler: fps
     aggr_args:
       NAME: 'ASSA'
       feature_type: 'assa'
@@ -63,7 +63,7 @@ datatransforms:
 # Training cfgs
 # ---------------------------------------------------------------------------- #
 # training receipe borrowed from: https://github.com/yanx27/Pointnet_Pointnet2_pytorch
-criterion:
+criterion_args:
   NAME: CrossEntropy
   label_smoothing: 0.2
 
