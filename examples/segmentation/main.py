@@ -164,7 +164,7 @@ def main(gpu, cfg):
     if num_classes is not None:
         assert cfg.num_classes == num_classes
     logging.info(f"number of classes of the dataset: {num_classes}")
-    cfg.classes = val_loader.dataset.classes if hasattr(val_loader.dataset, 'classes') else np.range(num_classes)
+    cfg.classes = val_loader.dataset.classes if hasattr(val_loader.dataset, 'classes') else np.arange(num_classes)
     cfg.cmap = np.array(val_loader.dataset.cmap) if hasattr(val_loader.dataset, 'cmap') else None
     validate_fn = validate if 'sphere' not in cfg.dataset.common.NAME.lower() else validate_sphere
 
