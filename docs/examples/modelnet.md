@@ -17,7 +17,7 @@ CUDA_VISIBLE_DEVICES=1 python examples/classification/main.py --cfg cfgs/modelne
 test `PointNeXt-S (C=64)`
 
 ```bash
-CUDA_VISIBLE_DEVICES=1 python examples/classification/main.py --cfg cfgs/modelnet40ply2048/pointnext-s.yaml model.encoder_args.width=64 wandb.use_wandb=False mode=test --pretrained_path /path/to/your/pretrained_model
+CUDA_VISIBLE_DEVICES=1 python examples/classification/main.py --cfg cfgs/modelnet40ply2048/pointnext-s.yaml model.encoder_args.width=64 mode=test --pretrained_path /path/to/your/pretrained_model
 ```
 
 ## Reference 

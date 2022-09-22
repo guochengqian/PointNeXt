@@ -38,18 +38,17 @@ data
 
 For example, train `PointNext-S`
 ```bash
-CUDA_VISIBLE_DEVICES=1 bash script/main_classification.sh cfgs/scanobjectnn/pointnext-s.yaml
+CUDA_VISIBLE_DEVICES=1 python examples/classification/main.py --cfg cfgs/scanobjectnn/pointnext-s.yaml
 ```
 
 * change the cfg file to use any other model, *e.g.* `cfgs/scanobjectnn/pointnet++.yaml` for training PointNet++  
-* run the command at the root directory
 
 
 
 ## Test
 
 ```bash
-CUDA_VISIBLE_DEVICES=1 bash script/main_classification.sh cfgs/scanobjectnn/pointnext-s.yaml wandb.use_wandb=False mode=test --pretrained_path pretrained/scanobjectnn/pointnext-s/pointnext-s_best.pth wandb.use_wandb=False
+CUDA_VISIBLE_DEVICES=1 python examples/classification/main.py --cfg cfgs/scanobjectnn/pointnext-s.yaml  mode=test --pretrained_path pretrained/scanobjectnn/pointnext-s/pointnext-s_best.pth 
 ```
 * change the cfg file to use any other model, *e.g.* `cfgs/scanobjectnn/pointnet++.yaml` for testing PointNet++  
 

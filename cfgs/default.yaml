@@ -34,7 +34,7 @@ sched_on_epoch: True
 
 # We support wandb for online results collection, please check their documentation for details: https://docs.wandb.ai/
 wandb:
-  use_wandb: True
+  use_wandb: False 
 
 use_amp: False
 # ---------------------------------------------------------------------------- #

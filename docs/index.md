@@ -45,23 +45,24 @@ source install.sh
 ```
 Note:  
 
-1) the `install.sh` requires CUDA 11.1; if another version of CUDA is used,  `install.sh` has to be modified accordingly; check your CUDA version by: `nvcc --version` before using the bash file;
+1) the `install.sh` requires CUDA 11.3; if another version of CUDA is used,  `install.sh` has to be modified accordingly; check your CUDA version by: `nvcc --version` before using the bash file;
 
 2) you might need to read `install.sh` for a step-by-step installation if the bash file (`install.sh`) does not work for you by any chance;
 
-3) for all experiments, we use wandb for online logging by default. Run `wandb --login` only at the first time in a new machine, or set `wandn.use_wandb=False` if you do not want to use wandb. Read the [official wandb documentation](https://docs.wandb.ai/quickstart) if needed.
+3) for all experiments, we use wandb for online logging. Run `wandb --login` only at the first time in a new machine. Set `wandn.use_wandb=False` to use this function. Read the [official wandb documentation](https://docs.wandb.ai/quickstart) if needed.
 
 
 ## General Usage 
-All experiments follow the simple rule to train and test: 
+All experiments follow the simple rule to train and test (run in the root directory): 
 
 ```
-CUDA_VISIBLE_DEVICES=$GPUs python examples/$task_folder/main.py --cfg $cfg cfgs/scanobjectnn/pointnext-s.yaml $kwargs
+CUDA_VISIBLE_DEVICES=$GPUs python examples/$task_folder/main.py --cfg $cfg $kwargs
 ```
+
 - $GPUs is the list of GPUs to use, for most experiments (ScanObjectNN, ModelNet40, S3DIS), we only use 1 A100 (GPUs=0)
   
 - $task_folder is the folder name of the experiment. For example, for s3dis segmentation, $task_folder=s3dis
 
 - $cfg is the path to cfg, for example, s3dis segmentation, $cfg=cfgs/s3dis/pointnext-s.yaml
 
-- $kwargs is used to overwrite the default configs. E.g. overwrite the batch size, just appending `batch_size=32` or `--batch_size 32`.  As another example, testing in S3DIS area 5, $kwargs should be `mode=test, --pretrained_path $pretrained_path`. 
+- $kwargs is used to overwrite the default configs. E.g. overwrite the batch size, just appending `batch_size=32` or `--batch_size 32`.  As another example, testing in S3DIS area 5, $kwargs should be `mode=test --pretrained_path $pretrained_path`. 

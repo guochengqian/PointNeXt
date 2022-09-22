@@ -61,7 +61,7 @@ In the PointNeXt project, we propose a new and flexible codebase for point-based
          norm: 'bn1d'
    ```
 
-5. **Online logging**: *Support [wandb](https://wandb.ai/)* for checking your results anytime anywhere. 
+5. **Online logging**: *Support [wandb](https://wandb.ai/)* for checking your results anytime anywhere. Just set `wandb.use_wandb=True` in your command.  
 
    ![docs/misc/wandb.png](docs/misc/wandb.png)
 
@@ -91,11 +91,6 @@ CUDA_VISIBLE_DEVICES=$GPUs python examples/$task_folder/main.py --cfg $cfg $kwar
 - $task_folder is the folder name of the experiment. For example, for s3dis segmentation, $task_folder=s3dis
 - $cfg is the path to cfg, for example, s3dis segmentation, $cfg=cfgs/s3dis/pointnext-s.yaml
 - $kwargs are the other keyword arguments to use. For example, testing in S3DIS area 5, $kwargs should be `mode=test, --pretrained_path $pretrained_path`. 
-
-
-Note:  
-1. We use *yaml* to support training and validation using different models on different datasets. Just use `.yaml` file accordingly. For example, train on ScanObjectNN using PointNeXt: `CUDA_VISIBLE_DEVICES=1 bash script/main_classification.sh cfgs/scanobjectnn/pointnext-s.yaml`, train on S3DIS using ASSANet-L: `CUDA_VISIBLE_DEVICES=1 bash script/main_segmentation.sh cfgs/s3dis/assanet-l.yaml`.  
-2. Check the default arguments of each .yaml file. You can overwrite them simply through the command line. E.g. overwrite the batch size, just appending `batch_size=32` or `--batch_size 32`.  
 
 
 ## Model Zoo (pretrained weights)
