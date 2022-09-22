@@ -23,7 +23,7 @@ def profile_model(model, cfg):
     model.eval()
     # for classification, num_points is 128 * 1024
     # for s3dis, num_points 16 * 15000 
-    B, N, C = 1, cfg.num_points, cfg.model.in_channels
+    B, N, C = 1, cfg.num_points, 3
     if cfg.variable:
         points = torch.randn(B * N, 3).cuda().contiguous()
         features = torch.randn(B * N, C).cuda().contiguous()
@@ -152,8 +152,8 @@ if __name__ == "__main__":
 
             cfg.variable = 'variable' in file
             if cfg.model.get('encoder_args', None) is not None:
-                cfg.model.in_channels = cfg.model.encoder_args.in_channels
-
+                cfg.model.encoder_args.in_channels = 3
+            cfg.model.in_channels = 3
             model = build_model_from_cfg(cfg.model).cuda()
             model.eval()
             model_size = cal_model_parm_nums(model)
