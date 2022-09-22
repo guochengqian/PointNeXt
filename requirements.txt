@@ -1,4 +1,4 @@
-scikit-learn==1.0.2 
+scikit-learn==1.0.2
 pickleshare==0.7.5
 ninja==1.10.2.3
 gdown
@@ -11,7 +11,13 @@ tqdm==4.62.3
 multimethod==1.7
 h5py==3.6.0
 matplotlib==3.5.1
-wandb==0.12.10
+wandb
 pyvista==0.33.2
 setuptools==59.5.0
 Cython==0.29.28
+pandas
+
+# for docs
+mkdocs-material
+mkdocs-awesome-pages-plugin
+mdx_truly_sane_lists

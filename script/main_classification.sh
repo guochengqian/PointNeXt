@@ -36,7 +36,7 @@ echo $NUM_GPU_AVAILABLE
 
 cfg=$1
 PY_ARGS=${@:2}
-python examples/classification/main.py --cfg $cfg  wandb.use_wandb=True ${PY_ARGS}
+python examples/classification/main.py --cfg $cfg ${PY_ARGS}
 
 # how to run
 # this script supports training using 1 GPU or multi-gpu,

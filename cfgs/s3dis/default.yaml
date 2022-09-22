@@ -19,6 +19,7 @@ dataset:
     voxel_max: null
     presample: False 
 
+feature_keys: x,heights
 num_classes: 13
 batch_size: 32
 val_batch_size: 1
@@ -27,8 +28,8 @@ dataloader:
   num_workers: 6
 
 datatransforms:
-  train: [ChromaticAutoContrast, PointsToTensor, PointCloudScaling, PointCloudFloorCentering, PointCloudRotation, PointCloudJitter, ChromaticDropGPU, ChromaticNormalize]
-  val: [PointsToTensor, PointCloudFloorCentering, ChromaticNormalize]
+  train: [ChromaticAutoContrast, PointsToTensor, PointCloudScaling, PointCloudXYZAlign, PointCloudRotation, PointCloudJitter, ChromaticDropGPU, ChromaticNormalize]
+  val: [PointsToTensor, PointCloudXYZAlign, ChromaticNormalize]
   vote: [ChromaticDropGPU]
   kwargs:
     color_drop: 0.2
@@ -47,7 +48,7 @@ epochs: 100
 
 cls_weighed_loss: False
 
-criterion:
+criterion_args:
   NAME: CrossEntropy
   label_smoothing: 0.2
 
@@ -60,7 +61,7 @@ sched: cosine
 warmup_epochs: 0
 
 min_lr: 1.0e-5 #
-lr: 0.01 # LR linear rule. 0.002 for 32 batches
+lr: 0.01 # LR linear rule.
 
 grad_norm_clip: 10
 use_voting: False
