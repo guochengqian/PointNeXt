@@ -1,7 +1,7 @@
 ## PointNeXt: Revisiting PointNet++ with Improved Training and Scaling Strategies
 
 <p align="center">
-<img src="../misc/pointnext.jpeg" width=100% height=100% class="center">
+<img src="docs/misc/pointnext.jpeg" width=100% height=100% class="center">
 </p>
 
 
