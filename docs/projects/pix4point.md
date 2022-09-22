@@ -29,29 +29,11 @@ Pure Transformer models have achieved impressive success in natural language pro
   ```
 
 
-<!-- ## Data preparation
-ImageNet-1k dataset is used to pretrain Pix4point backbone.
-You could download and extract ImageNet train and val images from http://image-net.org/.
-The directory structure is the standard layout for the torchvision [`datasets.ImageFolder`](https://pytorch.org/docs/stable/torchvision/datasets.html#imagefolder), and the training and validation data is expected to be in the `train/` folder and `val` folder respectively:
-```
-/path/to/imagenet/
-  train/
-    class1/
-      img1.jpeg
-    class2/
-      img2.jpeg
-  val/
-    class1/
-      img3.jpeg
-    class2/
-      img4.jpeg
-``` -->
+## ImageNet Pretraining
+Please refer to DeiT's repo for details. 
+ 
 
 ## S3DIS
-<!-- - scratch 
-  ```bash
-  CUDA_VISIBLE_DEVICES=0python examples/segmentation/main.py --cfg cfgs/s3dis_sphere_pix4point/pix4point.yaml mode=train 
-  ``` -->
 
 - finetune Image Pretrained Transformer 
   ```bash
