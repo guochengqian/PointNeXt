@@ -15,6 +15,7 @@ module load gcc/7.5.0
 # download openpoints
 # git submodule add git@github.com:guochengqian/openpoints.git
 git submodule update --init --recursive
+git submodule update --remote --merge # update to the latest version
 
 # install PyTorch
 conda deactivate
