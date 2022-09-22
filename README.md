@@ -29,7 +29,6 @@ Official PyTorch implementation for the following paper:
 -  :pushpin:  [Bernard Ghanem](https://www.bernardghanem.com/) is hiring visiting students. Monthly salary is paid with free housing. Contact Guocheng if interested: guocheng.qian@kaust.edu.sa
 -  :boom: Jun, 2022: Code released
 
----
 
 ## Features
 In the PointNeXt project, we propose a new and flexible codebase for point-based methods, namely [**OpenPoints**](https://github.com/guochengqian/openpoints). The biggest difference between OpenPoints and other libraries is that we focus more on reproducibility and fair benchmarking. 
@@ -98,7 +97,6 @@ Note:
 1. We use *yaml* to support training and validation using different models on different datasets. Just use `.yaml` file accordingly. For example, train on ScanObjectNN using PointNeXt: `CUDA_VISIBLE_DEVICES=1 bash script/main_classification.sh cfgs/scanobjectnn/pointnext-s.yaml`, train on S3DIS using ASSANet-L: `CUDA_VISIBLE_DEVICES=1 bash script/main_segmentation.sh cfgs/s3dis/assanet-l.yaml`.  
 2. Check the default arguments of each .yaml file. You can overwrite them simply through the command line. E.g. overwrite the batch size, just appending `batch_size=32` or `--batch_size 32`.  
 
----
 
 ## Model Zoo (pretrained weights)
 see [Model Zoo](https://guochengqian.github.io/PointNeXt/modelzoo/). 
@@ -106,14 +104,15 @@ see [Model Zoo](https://guochengqian.github.io/PointNeXt/modelzoo/).
 ### Visualization
 More examples are available in the [paper](https://arxiv.org/abs/2206.04670). 
 
-![s3dis](docs/misc/s3dis_vis.png)
-![shapenetpart](docs/misc/shapenetpart_vis.png)
+![s3dis](docs/projects/misc/s3dis_vis.png)
+![shapenetpart](docs/projects/misc/shapenetpart_vis.png)
+
+---
 
 ### Acknowledgment
 This library is inspired by [PyTorch-image-models](https://github.com/rwightman/pytorch-image-models) and [mmcv](https://github.com/open-mmlab/mmcv). 
 
 
----
 
 ### Citation
 If you find PointNeXt or the OpenPoints codebase useful, please cite:
