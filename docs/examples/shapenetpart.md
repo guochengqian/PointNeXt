@@ -42,7 +42,7 @@ CUDA_VISIBLE_DEVICES=0 python examples/shapenetpart/main.py --cfg cfgs/shapenetp
 
 ## Test
 ```bash
-CUDA_VISIBLE_DEVICES=0 python examples/shapenetpart/main.py cfgs/shapenetpart/pointnext-s.yaml mode=test --pretrained_path /path/to/your/pretrained_model
+CUDA_VISIBLE_DEVICES=0 python examples/shapenetpart/main.py --cfg cfgs/shapenetpart/pointnext-s.yaml mode=test --pretrained_path /path/to/your/pretrained_model
 ```
 
 
