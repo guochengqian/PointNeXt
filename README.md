@@ -4,7 +4,7 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/pointnext-revisiting-pointnet-with-improved/semantic-segmentation-on-s3dis-area5)](https://paperswithcode.com/sota/semantic-segmentation-on-s3dis-area5?p=pointnext-revisiting-pointnet-with-improved)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/pointnext-revisiting-pointnet-with-improved/3d-point-cloud-classification-on-modelnet40)](https://paperswithcode.com/sota/3d-point-cloud-classification-on-modelnet40?p=pointnext-revisiting-pointnet-with-improved)
 
-### [[arXiv]](https://arxiv.org/abs/2206.04670) | [[OpenPoints Library]](https://github.com/guochengqian/openpoints)
+### [[arXiv]](https://arxiv.org/abs/2206.04670) | [[OpenPoints Library]](https://github.com/guochengqian/openpoints) | [[Online Documentation]](https://guochengqian.github.io/PointNeXt/)
 
 <p align="center">
 <img src="docs/misc/effects_training_scaling.png" width=85% height=85% class="center">
@@ -78,7 +78,9 @@ Cuda-11.3 is required. Modify the `install.sh` if a different cuda version is us
 
 
 ## Usage 
-All experiments follow the simple rule to train and test: 
+Check our [online documentation](https://guochengqian.github.io/PointNeXt/) for detailed instructions. 
+
+A short instruction: all experiments follow the simple rule to train and test: 
 
 ```
 CUDA_VISIBLE_DEVICES=$GPUs python examples/$task_folder/main.py --cfg $cfg $kwargs
@@ -88,7 +90,6 @@ CUDA_VISIBLE_DEVICES=$GPUs python examples/$task_folder/main.py --cfg $cfg $kwar
 - $cfg is the path to cfg, for example, s3dis segmentation, $cfg=cfgs/s3dis/pointnext-s.yaml
 - $kwargs are the other keyword arguments to use. For example, testing in S3DIS area 5, $kwargs should be `mode=test, --pretrained_path $pretrained_path`. 
 
-Check our [online documentation]() for detailed instructions. 
 
 
 Note:  
@@ -97,7 +98,7 @@ Note:
 
 
 ## Model Zoo (pretrained weights)
-see [Model Zoo](docs/methods/modelzoo.md). 
+see [Model Zoo](https://guochengqian.github.io/PointNeXt/modelzoo/). 
 
 ### Visualization
 More examples are available in the [paper](https://arxiv.org/abs/2206.04670). 

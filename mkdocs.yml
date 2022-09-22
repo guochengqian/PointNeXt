@@ -10,7 +10,7 @@ nav:
     - examples/shapenetpart.md
     - examples/s3dis.md
     - examples/scannet.md
-  - ... | methods/*.md
+  - ... | projects/*.md
   - modelzoo.md
   - changes.md
 theme:
