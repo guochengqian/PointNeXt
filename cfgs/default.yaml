@@ -13,12 +13,15 @@ seed: null
 # ---------------------------------------------------------------------------- #
 # Training cfgs
 # ---------------------------------------------------------------------------- #
+epoch: 0
+epochs: 100 
+
 ignore_index: null
 val_fn: validate
 deterministic: False
 sync_bn: False
 
-criterion:
+criterion_args:
   NAME: CrossEntropy
 use_mask: False # in some datasets, requiring data mask in input
 
@@ -33,6 +36,7 @@ sched_on_epoch: True
 wandb:
   use_wandb: True
 
+use_amp: False
 # ---------------------------------------------------------------------------- #
 # Evaluation cfgs
 # ---------------------------------------------------------------------------- #
@@ -49,7 +53,6 @@ finetune: False
 mode: train # set to test in evaluation only mode
 logname: null
 load_path: null
-only_encoder: True # only load the encoder for finetuning
 
 print_freq: 50 
 save_freq: -1 # saving frequency for ckpt. -1 only saving the latest and the best.
@@ -64,3 +67,4 @@ pretrained_path: null
 datatransforms:
   train: null
   val: null
+feature_keys: pos

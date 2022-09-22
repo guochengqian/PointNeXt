@@ -16,7 +16,7 @@ model:
           ] # stage 4: 1024
     radius: [0.2, 0.4, null]
     num_samples: [32, 64, null]
-    sample_method: fps
+    sampler: fps
     aggr_args:
       NAME: 'convpool'
       feature_type: 'dp_fj'

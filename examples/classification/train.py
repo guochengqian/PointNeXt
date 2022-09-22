@@ -10,12 +10,12 @@ from openpoints.dataset import build_dataloader_from_cfg
 from openpoints.transforms import build_transforms_from_cfg
 from openpoints.optim import build_optimizer_from_cfg
 from openpoints.scheduler import build_scheduler_from_cfg
-from openpoints.loss import build_criterion_from_cfg
+# from openpoints.loss import build_criterion_from_cfg
 from openpoints.models import build_model_from_cfg
 from openpoints.models.layers import furthest_point_sample, fps
 
 
-def get_features(input_features_dim, data):
+def get_features_by_keys(input_features_dim, data):
     if input_features_dim == 3:
         features = data['pos']
     elif input_features_dim == 4:
@@ -54,7 +54,8 @@ def main(gpu, cfg, profile=False):
         dist.init_process_group(backend=cfg.dist_backend,
                                 init_method=cfg.dist_url,
                                 world_size=cfg.world_size,
-                                rank=cfg.rank)
+                                rank=cfg.rank) 
+        dist.barrier()
     # logger
     setup_logger_dist(cfg.log_path, cfg.rank, name=cfg.dataset.common.NAME)
     if cfg.rank == 0 :
@@ -65,12 +66,14 @@ def main(gpu, cfg, profile=False):
     set_random_seed(cfg.seed + cfg.rank, deterministic=cfg.deterministic)
     torch.backends.cudnn.enabled = True
     logging.info(cfg)
-
+    
+    if not cfg.model.get('criterion_args', False):
+        cfg.model.criterion_args = cfg.criterion_args
     model = build_model_from_cfg(cfg.model).to(cfg.rank)
     model_size = cal_model_parm_nums(model)
     logging.info(model)
     logging.info('Number of params: %.4f M' % (model_size / 1e6))
-    criterion = build_criterion_from_cfg(cfg.criterion).cuda()
+    # criterion = build_criterion_from_cfg(cfg.criterion_args).cuda()
     if cfg.model.get('in_channels', None) is None:
         cfg.model.in_channels = cfg.model.encoder_args.in_channels
 
@@ -165,7 +168,7 @@ def main(gpu, cfg, profile=False):
         if hasattr(train_loader.dataset, 'epoch'):
             train_loader.dataset.epoch = epoch - 1
         train_loss, train_macc, train_oa, _, _ = \
-            train_one_epoch(model, train_loader, criterion,
+            train_one_epoch(model, train_loader,
                             optimizer, scheduler, epoch, cfg)
 
         is_best = False
@@ -217,9 +220,9 @@ def main(gpu, cfg, profile=False):
 
     if writer is not None:
         writer.close()
+    dist.destroy_process_group()
 
-
-def train_one_epoch(model, train_loader, criterion, optimizer, scheduler, epoch, cfg):
+def train_one_epoch(model, train_loader, optimizer, scheduler, epoch, cfg):
     loss_meter = AverageMeter()
     cm = ConfusionMatrix(num_classes=cfg.num_classes)
     npoints = cfg.num_points
@@ -258,8 +261,7 @@ def train_one_epoch(model, train_loader, criterion, optimizer, scheduler, epoch,
 
         data['pos'] = points[:, :, :3].contiguous()
         data['x'] = points[:, :, :cfg.model.in_channels].transpose(1, 2).contiguous()
-        logits = model(data)
-        loss = criterion(logits, target)
+        logits, loss = model.get_logits_loss(data, target) if not hasattr(model, 'module') else model.module.get_logits_loss(data, target)
         loss.backward()
 
         # optimize

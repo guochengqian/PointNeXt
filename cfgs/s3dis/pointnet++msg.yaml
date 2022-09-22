@@ -16,7 +16,7 @@ model:
            [[256, 256, 512], [256, 384, 512]]]
     radius: [[0.1, 0.2], [0.2, 0.4], [0.4, 0.8], [0.8, 1.6]]
     num_samples: [[16, 32], [16, 32], [16, 32], [16, 32]]
-    sample_method: fps
+    sampler: fps
     aggr_args:
       NAME: 'convpool'
       feature_type: 'dp_fj'
@@ -42,8 +42,8 @@ model:
 # Data Augmentation 
 # ---------------------------------------------------------------------------- #
 datatransforms:
-  train: [PointsToTensor, PointCloudScaling, PointCloudFloorCentering, PointCloudRotation, PointCloudJitter, ChromaticDropGPU, ChromaticNormalize]
-  val: [PointsToTensor, PointCloudFloorCentering, ChromaticNormalize]
+  train: [PointsToTensor, PointCloudScaling, PointCloudXYZAlign, PointCloudRotation, PointCloudJitter, ChromaticDropGPU, ChromaticNormalize]
+  val: [PointsToTensor, PointCloudXYZAlign, ChromaticNormalize]
   vote: [ChromaticDropGPU]
   kwargs:
     color_drop: 0.2
@@ -59,7 +59,7 @@ datatransforms:
 # training receipe borrowed from: https://github.com/yanx27/Pointnet_Pointnet2_pytorch
 
 # criterion
-criterion:
+criterion_args:
   NAME: CrossEntropy
   label_smoothing: 0.0
 class_weights: null

@@ -16,7 +16,7 @@ model:
         [[256, 256, 512]]] # stage 4: 1024
     radius: 0.1
     num_samples: 32
-    sample_method: fps
+    sampler: fps
     aggr_args:
       NAME: 'convpool'
       feature_type: 'dp_fj'
@@ -40,8 +40,8 @@ model:
     in_channels: null
 
 datatransforms:
-  train: [ChromaticAutoContrast, PointsToTensor, PointCloudScaling, PointCloudFloorCentering, PointCloudJitter, ChromaticDropGPU, ChromaticNormalize]
-  val: [PointsToTensor, PointCloudFloorCentering, ChromaticNormalize]
+  train: [ChromaticAutoContrast, PointsToTensor, PointCloudScaling, PointCloudXYZAlign, PointCloudJitter, ChromaticDropGPU, ChromaticNormalize]
+  val: [PointsToTensor, PointCloudXYZAlign, ChromaticNormalize]
   vote: [ChromaticDropGPU]
   kwargs:
     color_drop: 0.2

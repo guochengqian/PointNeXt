@@ -33,7 +33,7 @@ dataloader:
 # Training cfgs
 # ---------------------------------------------------------------------------- #
 # scheduler
-criterion:
+criterion_args:
   NAME: SmoothCrossEntropy
   label_smoothing: 0.3
 

@@ -1,0 +1,124 @@
+model:
+  NAME: DistillCls
+  encoder_args:
+    NAME: PointViT
+    distill: True
+    in_channels: 4 
+    embed_dim: 384
+    depth: 12
+    num_heads: 6
+    mlp_ratio: 4.
+    drop_rate: 0.
+    attn_drop_rate: 0.1
+    drop_path_rate: 0.0
+    qkv_bias: True
+    act_args:
+      act: 'gelu'
+    norm_args:
+      norm: 'ln'
+      eps: 1.0e-6
+    embed_args:
+      NAME: PointPatchEmbed
+      feature_type: 'dp_df'
+      reduction: 'max'
+      sample_ratio: 0.25
+      normalize_dp: False 
+      group_size: 32
+      subsample: 'fps'
+      group: 'knn'
+      norm_args: bn
+      conv_args:
+        order: conv-norm-act
+      layers: 4
+      channels: [128, 256, 512]
+    globals: cls,max,avg
+  cls_args: 
+    NAME: ClsHead 
+    num_classes: 15
+    mlps: [256, 256]
+    norm_args: 
+      norm: 'bn'
+  # teacher model
+  distill_args: 
+    NAME: BaseCls
+    pretrained_path: pretrained/scanobjectnn/pointnext-s/pointnext-s_best.pth
+    encoder_args:
+      NAME: PointNextEncoder
+      blocks: [1, 1, 1, 1, 1, 1]
+      strides: [1, 2, 2, 2, 2, 1]
+      width: 32
+      in_channels: 4
+      sa_layers: 2
+      sa_use_res: True
+      radius: 0.15
+      radius_scaling: 1.5
+      nsample: 32
+      expansion: 4
+      aggr_args:
+        feature_type: 'dp_fj'
+        reduction: 'max'
+      group_args:
+        NAME: 'ballquery'
+        normalize_dp: True
+      conv_args:
+        order: conv-norm-act
+      act_args:
+        act: 'relu'
+      norm_args:
+        norm: 'bn'
+    cls_args: 
+      NAME: ClsHead
+      num_classes: 15
+      mlps: [512, 256]
+      norm_args: 
+        norm: 'bn1d'
+    distill_head_args: 
+      NAME: ClsHead
+      num_classes: 15
+      mlps: null 
+
+pretrained_path: pretrained/imagenet/small_224.pth
+mode: finetune_encoder
+
+# AUG3 is better  than aug. 1024 uniformly sampled points improve the performance.
+# ---------------------------------------------------------------------------- #
+# Dataset cfgs
+# ---------------------------------------------------------------------------- #
+# 1. we center the point cloud to eschew from learning translation invariant. 
+# 2. we added rotation augmentation
+datatransforms:
+  train: [PointsToTensor, PointCloudScaling, PointCloudCenterAndNormalize, PointCloudRotation]
+  vote: [PointCloudRotation]
+  val: [PointsToTensor, PointCloudCenterAndNormalize]
+  kwargs:
+    scale: [0.9, 1.1]
+    angle: [0.0, 1.0, 0.0]
+    gravity_dim: 1
+# ---------------------------------------------------------------------------- #
+# Training cfgs, same as PointMAE for fair comparasion 
+# ---------------------------------------------------------------------------- #
+criterion_args:
+  NAME: DistillLoss
+  base_criterion_args:
+    NAME: CrossEntropy
+    label_smoothing: 0.0
+  tau: 10.0 
+  distill_type: soft
+
+
+# Optimizer
+lr: 5.0e-4 
+optimizer:
+ NAME: 'adamw'
+ weight_decay: 0.05
+
+sched: cosine
+epochs: 300
+t_max: 300
+warmup_epochs: 10
+min_lr: 1.0e-6
+grad_norm_clip: 10
+
+log_dir: log/scanobject/pix4point
+wandb:
+  project: pix4point-ScanObjectNN

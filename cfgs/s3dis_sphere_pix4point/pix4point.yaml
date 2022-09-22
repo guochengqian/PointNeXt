@@ -1,0 +1,47 @@
+model:
+  NAME: BaseSeg
+  encoder_args:
+    NAME: PointViT
+    in_channels: 4
+    embed_dim: 384
+    depth: 12
+    num_heads: 6
+    mlp_ratio: 4.
+    drop_rate: 0.
+    attn_drop_rate: 0.0
+    drop_path_rate: 0.1
+    add_pos_each_block: True
+    qkv_bias: True
+    act_args:
+      act: 'gelu' # better than relu
+    norm_args:
+      norm: 'ln'
+      eps: 1.0e-6
+    embed_args:
+      NAME: PointPatchEmbed
+      feature_type: 'dp_df' # show an abaltion study of this.
+      reduction: 'max'
+      sample_ratio: 0.0625
+      normalize_dp: False 
+      group_size: 32
+      subsample: 'fps' # random, FPS
+      group: 'knn'  # change it to group args. 
+      conv_args:
+        order: conv-norm-act
+      layers: 4
+      norm_args: 
+        norm: 'ln2d'
+  decoder_args:
+    NAME: PointViTDecoder
+    channel_scaling: 1
+    globals: cls,max
+  cls_args: 
+    NAME: SegHead
+    num_classes: 13
+    in_channels: null
+    mlps: [256]
+    norm_args: 
+      norm: 'ln1d'
+
+mode: finetune_encoder
+pretrained_path: pretrained/imagenet/small_224.pth
