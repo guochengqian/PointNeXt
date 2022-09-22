@@ -18,8 +18,8 @@ PointNet++ is one of the most influential neural architectures for point cloud u
 ### Visualization
 More examples are available in the [paper](https://arxiv.org/abs/2206.04670).
 
-![s3dis](docs/misc/s3dis_vis.png)
-![shapenetpart](docs/misc/shapenetpart_vis.png)
+![s3dis](../misc/s3dis_vis.png)
+![shapenetpart](../misc/shapenetpart_vis.png)
 
 
 ---
