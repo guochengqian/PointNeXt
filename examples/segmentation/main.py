@@ -631,7 +631,7 @@ def test(model, data_list, cfg, num_votes=1):
             write_obj(coord, pred,
                       os.path.join(cfg.vis_dir, f'pred-{file_name}.obj'))
 
-        if cfg.get('save_pred', True):
+        if cfg.get('save_pred', False):
             if 'semantickitti' in cfg.dataset.common.NAME.lower():
                 pred = pred + 1
                 pred = pred.cpu().numpy().squeeze()

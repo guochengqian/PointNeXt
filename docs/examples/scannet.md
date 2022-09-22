@@ -1,6 +1,4 @@
-# 3D Object Classification on ScanNet
-
-
+# Large-Scale 3D Segmentation on ScanNet
 
 
 ## Dataset
@@ -25,11 +23,18 @@ python examples/segmentation/main.py --cfg cfgs/scannet/pointnext-xl.yaml
 * change the cfg file to use any other model, *e.g.* `cfgs/s3dis/pointnet++.yaml` for training PointNet++  
 * run the command at the root directory
 
+
+## Val 
+
+```bash
+python examples/segmentation/main.py --cfg cfgs/scannet/<YOUR_CONFIG> mode=test dataset.test.split=val --pretrained_path <YOUR_CHECKPOINT_PATH>
+```
+
 ## Test
 
 You can generate Scannet benchmark submission file as follows
 ```bash
-CUDA_VISIBLE_DEVICES=1 python examples/segmentation/main.py --cfg cfgs/scannet/<YOUR_CONFIG> mode=test dataset.test.split=test no_label=True  wandb.use_wandb=False pretrained_path=<YOUR_CHECKPOINT_PATH>
+CUDA_VISIBLE_DEVICES=1 python examples/segmentation/main.py --cfg cfgs/scannet/<YOUR_CONFIG> mode=test dataset.test.split=test no_label=True pretrained_path=<YOUR_CHECKPOINT_PATH>
 ```
 Please make sure your checkpoint and your cfg matches with each.
 
