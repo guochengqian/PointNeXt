@@ -38,7 +38,7 @@ model:
     norm_args: 
       norm: 'bn1d'
 
-pretrained_path: pretrained/imagenet/small_224.pth
+pretrained_path: pretrained/imagenet/small_21k_224.pth
 mode: finetune_encoder
 
 

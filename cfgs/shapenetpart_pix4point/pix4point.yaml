@@ -44,4 +44,4 @@ model:
       norm: 'bn'
 
 mode: finetune_encoder
-pretrained_path: pretrained/imagenet/small_224.pth
+pretrained_path: pretrained/imagenet/small_21k_224.pth
