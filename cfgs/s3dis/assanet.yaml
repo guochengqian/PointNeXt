@@ -9,6 +9,7 @@ model:
     strides: [4, 4, 4, 4]
     blocks: [3, 3, 3, 3]
     width_scaling: 3
+    double_last_channel: False
     layers: 3
     use_res: True 
     query_as_support: True
@@ -75,9 +76,9 @@ optimizer:
 sched: cosine
 warmup_epochs: 0
 
-lr: 0.02 # LR linear rule. 0.002 for 32 batches
+lr: 0.01 # LR linear rule. 0.002 for 32 batches
 min_lr: 1.0e-5 #
 
 epochs: 150
 
-batch_size: 32
+batch_size: 8
