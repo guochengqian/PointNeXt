@@ -7,7 +7,7 @@
 ### [[arXiv]](https://arxiv.org/abs/2206.04670) | [[OpenPoints Library]](https://github.com/guochengqian/openpoints) | [[Online Documentation]](https://guochengqian.github.io/PointNeXt/)
 
 <p align="center">
-<img src="docs/misc/effects_training_scaling.png" width=85% height=85% class="center">
+<img src="docs/projects/misc/effects_training_scaling.png" width=85% height=85% class="center">
 </p>
 
 Official PyTorch implementation for the following paper:
@@ -20,7 +20,7 @@ Official PyTorch implementation for the following paper:
 
 
 <p align="center">
-<img src="docs/misc/pointnext.jpeg" width=85% height=85% class="center">
+<img src="docs/projects/misc/pointnext.jpeg" width=85% height=85% class="center">
 </p>
 
 ## News
@@ -28,6 +28,8 @@ Official PyTorch implementation for the following paper:
 -  :pushpin:  [Houwen Peng](https://houwenpeng.com/) is hiring research interns at Microsoft Research Asia. Contact: houwen.peng@microsoft.com 
 -  :pushpin:  [Bernard Ghanem](https://www.bernardghanem.com/) is hiring visiting students. Monthly salary is paid with free housing. Contact Guocheng if interested: guocheng.qian@kaust.edu.sa
 -  :boom: Jun, 2022: Code released
+
+---
 
 ## Features
 In the PointNeXt project, we propose a new and flexible codebase for point-based methods, namely [**OpenPoints**](https://github.com/guochengqian/openpoints). The biggest difference between OpenPoints and other libraries is that we focus more on reproducibility and fair benchmarking. 
@@ -64,6 +66,7 @@ In the PointNeXt project, we propose a new and flexible codebase for point-based
 
    ![docs/misc/wandb.png](docs/misc/wandb.png)
 
+---
 
 ## Installation
 We provide a simple bash file to install the environment:
@@ -91,11 +94,11 @@ CUDA_VISIBLE_DEVICES=$GPUs python examples/$task_folder/main.py --cfg $cfg $kwar
 - $kwargs are the other keyword arguments to use. For example, testing in S3DIS area 5, $kwargs should be `mode=test, --pretrained_path $pretrained_path`. 
 
 
-
 Note:  
 1. We use *yaml* to support training and validation using different models on different datasets. Just use `.yaml` file accordingly. For example, train on ScanObjectNN using PointNeXt: `CUDA_VISIBLE_DEVICES=1 bash script/main_classification.sh cfgs/scanobjectnn/pointnext-s.yaml`, train on S3DIS using ASSANet-L: `CUDA_VISIBLE_DEVICES=1 bash script/main_segmentation.sh cfgs/s3dis/assanet-l.yaml`.  
 2. Check the default arguments of each .yaml file. You can overwrite them simply through the command line. E.g. overwrite the batch size, just appending `batch_size=32` or `--batch_size 32`.  
 
+---
 
 ## Model Zoo (pretrained weights)
 see [Model Zoo](https://guochengqian.github.io/PointNeXt/modelzoo/). 
@@ -110,6 +113,7 @@ More examples are available in the [paper](https://arxiv.org/abs/2206.04670).
 This library is inspired by [PyTorch-image-models](https://github.com/rwightman/pytorch-image-models) and [mmcv](https://github.com/open-mmlab/mmcv). 
 
 
+---
 
 ### Citation
 If you find PointNeXt or the OpenPoints codebase useful, please cite:
