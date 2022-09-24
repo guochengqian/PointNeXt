@@ -45,7 +45,10 @@ CUDA_VISIBLE_DEVICES=0 python examples/shapenetpart/main.py --cfg cfgs/shapenetp
 CUDA_VISIBLE_DEVICES=0 python examples/shapenetpart/main.py --cfg cfgs/shapenetpart/pointnext-s.yaml mode=test --pretrained_path /path/to/your/pretrained_model
 ```
 
-
+## Profile parameters, FLOPs, and Throughput
+```bash
+CUDA_VISIBLE_DEVICES=0 python examples/profile.py --cfg cfgs/shapenetpart/pointnext-s.yaml batch_size=64 num_points=2048 timing=True flops=True
+```
 
 ## Reference
 ```
