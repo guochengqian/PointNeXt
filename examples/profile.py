@@ -43,7 +43,7 @@ def profile_model(model, cfg):
             cls = torch.zeros(B, 16).long().cuda()
         if cfg.dataset.common.NAME == 'ShapeNetPartNormal':
             args = [points, features, cls]
-            args = {'pos': points, 'x': features}
+            # args = {'pos': points, 'x': features, 'cls': cls}
         else:
             args = [{'pos': points, 'x': features}]
             # args = points 

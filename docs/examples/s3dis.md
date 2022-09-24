@@ -31,7 +31,7 @@ data
 
 For example, train `PointNext-XL`
 ```bash
-CUDA_VISIBLE_DEVICES=1 python examples/segmentation/main.py cfgs/s3dis/pointnext-xl.yaml
+CUDA_VISIBLE_DEVICES=1 python examples/segmentation/main.py --cfg cfgs/s3dis/pointnext-xl.yaml
 ```
 * change the cfg file to use any other model, *e.g.* `cfgs/s3dis/pointnet++.yaml` for training PointNet++  
 * run the command at the root directory
@@ -49,7 +49,7 @@ CUDA_VISIBLE_DEVICES=1 bash script/main_segmentation.sh cfgs/s3dis/pointnext-xl.
 ## Test on All Areas
 
 ```bash
-CUDA_VISIBLE_DEVICES=1 python examples/segmentation/test_6fold.py cfgs/s3dis/pointnext-xl.yaml mode=test --pretrained_path pretrained/s3dis/pointnext-xl
+CUDA_VISIBLE_DEVICES=1 python examples/segmentation/test_s3dis_6fold.py --cfg cfgs/s3dis/pointnext-xl.yaml mode=test --pretrained_path pretrained/s3dis/pointnext-xl
 ```
 
 

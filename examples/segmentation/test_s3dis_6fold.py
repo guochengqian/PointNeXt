@@ -10,16 +10,17 @@ import numpy as np
 import glob
 import pathlib
 import wandb
-from main import write_to_csv, test_entire_room
+from main import write_to_csv, test, generate_data_list
 from openpoints.models import build_model_from_cfg
 from openpoints.utils import get_mious
-from openpoints.utils import set_random_seed,  load_checkpoint, setup_logger_dist, \
+from openpoints.utils import set_random_seed, load_checkpoint, setup_logger_dist, \
     cal_model_parm_nums, Wandb, generate_exp_directory, EasyConfig, dist_utils
 import warnings
+
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
-def test(cfg, area=5):
+def test_one_room(cfg, area=5):
     logging.info(f'================ Area {area} ================')
     model = build_model_from_cfg(cfg.model).to(cfg.rank)
     model_size = cal_model_parm_nums(model)
@@ -27,11 +28,15 @@ def test(cfg, area=5):
 
     best_epoch, best_val = load_checkpoint(
         model, pretrained_path=cfg.pretrained_path)
-    test_miou, test_macc, test_oa, test_ious, test_accs, cfg.allarea_cm = test_entire_room(
-        model, area, cfg, global_cm=cfg.allarea_cm, num_votes=1)
+    cfg.dataset.common.test_area = area
+    data_list = generate_data_list(cfg)
+    logging.info(f"length of test dataset: {len(data_list)}")
+    test_miou, test_macc, test_oa, test_ious, test_accs, cfg.allarea_cm = test(
+        model, data_list, cfg, num_votes=1)
     with np.printoptions(precision=2, suppress=True):
-        logging.info(f'Best ckpt @E{best_epoch},  test_oa {test_oa:.2f}, test_macc {test_macc:.2f}, test_miou {test_miou:.2f}, '
-                     f'\niou per cls is: {test_ious}')
+        logging.info(
+            f'Best ckpt @E{best_epoch},  test_oa {test_oa:.2f}, test_macc {test_macc:.2f}, test_miou {test_miou:.2f}, '
+            f'\niou per cls is: {test_ious}')
     write_to_csv(test_oa, test_macc, test_miou, test_ious,
                  best_epoch, cfg, write_header=area == 1, area=area)
     logging.info(f'save results in {cfg.csv_path}')
@@ -57,6 +62,14 @@ if __name__ == "__main__":
     cfg.mode = 'test'
     # init log dir
     cfg.task_name = args.cfg.split('.')[-2].split('/')[-2]
+    cfg.cfg_basename = args.cfg.split('.')[-2].split('/')[-1]  # cfg_basename, \eg pointnext-xl
+    tags = [
+        cfg.task_name,  # task name (the folder of name under ./cfgs
+        cfg.mode,
+        cfg.cfg_basename,  # cfg file name
+        f'ngpus{cfg.world_size}',
+        f'seed{cfg.seed}',
+    ]
     cfg.exp_name = args.cfg.split('.')[-2].split('/')[-1]
     tags = [
         cfg.task_name,  # task name (the folder of name under ./cfgs
@@ -94,8 +107,8 @@ if __name__ == "__main__":
     cfg.csv_path = os.path.join(cfg.run_dir, cfg.run_name + f'_allareas.csv')
     # Get the path of each pretrained
     pretrained_paths_unorder = glob.glob(
-        str(pathlib.Path(cfg.pretrained_path) / '*' / 'checkpoint' / '*_best.pth'))
-    cfg.allarea_cm = None   # using the same cm
+        str(pathlib.Path(cfg.pretrained_path) / '*' / '*checkpoint*' / '*_best.pth'))
+    cfg.allarea_cm = None  # using the same cm
 
     cfg.classes = ['ceiling',
                    'floor',
@@ -116,6 +129,7 @@ if __name__ == "__main__":
 
         # find the corret pretrained path from the list
         pretrained_path = None
+
         for pretrained in pretrained_paths_unorder:
             if f'test_area={i}' in pretrained:
                 pretrained_path = pretrained
@@ -126,7 +140,7 @@ if __name__ == "__main__":
                 break
         assert pretrained_path is not None, f'fail to find pretrained_path for area {i}'
         cfg.pretrained_path = pretrained_path
-        test(cfg, area=i)
+        test_one_room(cfg, area=i)
 
     # all area
     tp, union, count = cfg.allarea_cm.tp, cfg.allarea_cm.union, cfg.allarea_cm.count
