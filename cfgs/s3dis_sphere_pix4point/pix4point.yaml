@@ -34,7 +34,7 @@ model:
   decoder_args:
     NAME: PointViTDecoder
     channel_scaling: 1
-    globals: cls,max
+    global_feat: cls,max
   cls_args: 
     NAME: SegHead
     num_classes: 13

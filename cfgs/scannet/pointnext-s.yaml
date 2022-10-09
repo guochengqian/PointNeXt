@@ -1,5 +1,3 @@
-# Model Information
-
 model:
   NAME: BaseSeg
   encoder_args:
@@ -30,7 +28,7 @@ model:
   cls_args:
     NAME: SegHead
     num_classes: 20 
-    globals: max # append global feature to each point feature
+    global_feat: max # append global feature to each point feature
     in_channels: null
     norm_args:
       norm: 'bn'

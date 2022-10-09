@@ -33,9 +33,9 @@ data
 ```
 
 ## Train
-For example, train `PointNeXt-S`
+For example, train `PointNeXt-S` using 4 GPUs by default
 ```bash
-CUDA_VISIBLE_DEVICES=0 python examples/shapenetpart/main.py --cfg cfgs/shapenetpart/pointnext-s.yaml
+CUDA_VISIBLE_DEVICES=0,1,2,3 python examples/shapenetpart/main.py --cfg cfgs/shapenetpart/pointnext-s.yaml
 ```
 - change `cfg` to `cfgs/shapenetpart/pointnext-s_c160.yaml` to train the best model we report in our paper.  
 

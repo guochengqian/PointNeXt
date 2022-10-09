@@ -1,7 +1,3 @@
-# Batches npoints Params.(M)      GFLOPs
-# 4       45056    4.373   48.18
-# Throughput (ins./s): 11.829987631275026
-
 model:
   NAME: BaseSeg
   encoder_args:
@@ -31,7 +27,7 @@ model:
     NAME: PointNextDecoder
   cls_args:
     NAME: SegHead
-    globals: max # append global feature to each point feature
+    global_feat: max # append global feature to each point feature
     num_classes: 20 
     in_channels: null
     norm_args:

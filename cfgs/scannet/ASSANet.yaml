@@ -1,7 +1,3 @@
-# GFLOPs  GMACs   Params.(M)
-#  2.51    1.25    2.425
-# Throughput (ins./s): 227.91048715884696   
-
 model:
   NAME: BaseSeg
   encoder_args:

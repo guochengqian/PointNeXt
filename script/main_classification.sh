@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 #SBATCH -N 1
-#SBATCH --array=0-1
-#SBATCH -J modelnet
+#SBATCH --array=0
+#SBATCH -J cls
 #SBATCH -o slurm_logs/%x.%3a.%A.out
 #SBATCH -e slurm_logs/%x.%3a.%A.err
 #SBATCH --time=6:00:00
-#SBATCH --gres=gpu:1
-#SBATCH --constraint=[v100]
+##SBATCH --gres=gpu:v100:1
+#SBATCH --gpus=1
+#SBATCH --nodes=1
 #SBATCH --cpus-per-gpu=6
-#SBATCH --mem=30G
-##SBATCH --mail-type=FAIL,TIME_LIMIT,TIME_LIMIT_90
+##SBATCH --mem=30G
 
 module load cuda/11.1.1
 module load gcc
@@ -51,4 +51,4 @@ python examples/classification/main.py --cfg $cfg ${PY_ARGS}
 # bash script/main_classification.sh cfgs/scaobjetnn/pointnext-s.yaml
 
 # if using local machine with GPUs, train PointNeXt-S on scanobjectnn classification using only 1 GPU
-# CUDA_VISIBLE_DEVICES=1 bash script/main_classification.sh cfgs/scaobjetnn/pointnext-s.yaml
+# CUDA_VISIBLE_DEVICES=0 bash script/main_classification.sh cfgs/scaobjetnn/pointnext-s.yaml

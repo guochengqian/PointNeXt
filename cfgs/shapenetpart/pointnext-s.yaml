@@ -1,12 +1,8 @@
-# CUDA_VISIBLE_DEVICES=1 python examples/profile.py batch_size=64 num_points=2048 timing=True --cfg cfgs/shapenetpart/pointnext-s.yaml model.encoder_args.in_channels=3 model.encoder_args.width=32
+# ===>loading from cfgs/shapenetpart/pointnext-s.yaml
+# Number of params: 0.9817 M
+# test input size: ((torch.Size([1, 2048, 3]), torch.Size([1, 3, 2048])))
 # Batches npoints Params.(M)      GFLOPs
-# 64      2048     1.949   10.21
-# Throughput (ins./s): 351.7839235380427
-
-# CUDA_VISIBLE_DEVICES=1 python examples/profile.py batch_size=64 num_points=2048 timing=True --cfg cfgs/shapenetpart/pointnext-s.yaml model.encoder_args.in_channels=3 model.encoder_args.width=64
-# Batches npoints Params.(M)      GFLOPs
-# 64      2048     7.572   40.26
-# Throughput (ins./s): 145.42841435056343
+# 64      2048     0.982   4.52
 model:
   NAME: BasePartSeg
   encoder_args:
@@ -38,7 +34,7 @@ model:
     cls_map: curvenet
   cls_args:
     NAME: SegHead
-    globals: max,avg  # apped global feature to each point feature
+    global_feat: max,avg  # apped global feature to each point feature
     num_classes: 50
     in_channels: null
     norm_args:

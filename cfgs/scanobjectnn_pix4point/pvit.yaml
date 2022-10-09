@@ -30,7 +30,7 @@ model:
         order: conv-norm-act
       layers: 4
       channels: [128, 256, 512]
-    globals: cls,max,avg
+    global_feat: cls,max,avg
   cls_args: 
     NAME: ClsHead 
     num_classes: 15
@@ -69,8 +69,6 @@ optimizer:
  NAME: 'adamw'
  weight_decay: 0.05
 
-
-# TODO: change this to multi-step decay...
 sched: cosine
 epochs: 300
 t_max: 300

@@ -5,10 +5,10 @@ for profiling the parameters, flops, speed of a model
 usage example: 
 
 1. profile pointnext-s on scanobjectnn using 128 * 1024 points as input
-CUDA_VISIBLE_DEVICES=1 python examples/profile.py --cfg cfgs/scanobjectnn/pointnext-s.yaml batch_size=128 num_points=1024 timing=True
+CUDA_VISIBLE_DEVICES=0 python examples/profile.py --cfg cfgs/scanobjectnn/pointnext-s.yaml batch_size=128 num_points=1024 timing=True
 
 2. profile all models for scanobjectnn classification using 128 * 1024 points as input
-CUDA_VISIBLE_DEVICES=1 python examples/profile.py --cfg cfgs/scanobjectnn batch_size=128 num_points=1024 timing=True
+CUDA_VISIBLE_DEVICES=0 python examples/profile.py --cfg cfgs/scanobjectnn batch_size=128 num_points=1024 timing=True
 """
 import os, sys, argparse, time, warnings
 import torch

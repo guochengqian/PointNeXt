@@ -7,6 +7,7 @@ model:
     blocks: [3, 3, 3, 3]
     width: 128
     width_scaling: 3
+    double_last_channel: False
     layers: 3
     use_res: True 
     query_as_support: True
@@ -36,8 +37,7 @@ model:
   cls_args: 
     NAME: ClsHead
     num_classes: 40
+    global_feat: max,avg
     mlps: [512, 256]
-    max_pool: True
-    avg_pool: True
     norm_args: 
       norm: 'bn1d'

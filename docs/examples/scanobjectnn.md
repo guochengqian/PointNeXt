@@ -38,7 +38,7 @@ data
 
 For example, train `PointNext-S`
 ```bash
-CUDA_VISIBLE_DEVICES=1 python examples/classification/main.py --cfg cfgs/scanobjectnn/pointnext-s.yaml
+CUDA_VISIBLE_DEVICES=0 python examples/classification/main.py --cfg cfgs/scanobjectnn/pointnext-s.yaml
 ```
 
 * change the cfg file to use any other model, *e.g.* `cfgs/scanobjectnn/pointnet++.yaml` for training PointNet++  
@@ -48,7 +48,7 @@ CUDA_VISIBLE_DEVICES=1 python examples/classification/main.py --cfg cfgs/scanobj
 ## Test
 
 ```bash
-CUDA_VISIBLE_DEVICES=1 python examples/classification/main.py --cfg cfgs/scanobjectnn/pointnext-s.yaml  mode=test --pretrained_path pretrained/scanobjectnn/pointnext-s/pointnext-s_best.pth 
+CUDA_VISIBLE_DEVICES=0 python examples/classification/main.py --cfg cfgs/scanobjectnn/pointnext-s.yaml  mode=test --pretrained_path pretrained/scanobjectnn/pointnext-s/pointnext-s_best.pth 
 ```
 * change the cfg file to use any other model, *e.g.* `cfgs/scanobjectnn/pointnet++.yaml` for testing PointNet++  
 
@@ -57,7 +57,7 @@ CUDA_VISIBLE_DEVICES=1 python examples/classification/main.py --cfg cfgs/scanobj
 ## Profile parameters, FLOPs, and Throughput
 
 ```
-CUDA_VISIBLE_DEVICES=1 python examples/profile.py --cfg cfgs/scanobjectnn/pointnext-s.yaml batch_size=128 num_points=1024 timing=True
+CUDA_VISIBLE_DEVICES=0 python examples/profile.py --cfg cfgs/scanobjectnn/pointnext-s.yaml batch_size=128 num_points=1024 timing=True flops=True
 ```
 
 note: 

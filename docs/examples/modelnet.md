@@ -9,7 +9,7 @@ ModelNet40 dataset will be downloaded automatically.
 ## Train
 For example, train `PointNeXt-S`
 ```bash
-CUDA_VISIBLE_DEVICES=1 python examples/classification/main.py --cfg cfgs/modelnet40ply2048/pointnext-s.yaml
+CUDA_VISIBLE_DEVICES=0 python examples/classification/main.py --cfg cfgs/modelnet40ply2048/pointnext-s.yaml
 ```
 
 ## Test
@@ -17,7 +17,7 @@ CUDA_VISIBLE_DEVICES=1 python examples/classification/main.py --cfg cfgs/modelne
 test `PointNeXt-S (C=64)`
 
 ```bash
-CUDA_VISIBLE_DEVICES=1 python examples/classification/main.py --cfg cfgs/modelnet40ply2048/pointnext-s.yaml model.encoder_args.width=64 mode=test --pretrained_path /path/to/your/pretrained_model
+CUDA_VISIBLE_DEVICES=0 python examples/classification/main.py --cfg cfgs/modelnet40ply2048/pointnext-s.yaml model.encoder_args.width=64 mode=test --pretrained_path /path/to/your/pretrained_model
 ```
 
 ## Reference 

@@ -31,7 +31,7 @@ data
 
 For example, train `PointNext-XL`
 ```bash
-CUDA_VISIBLE_DEVICES=1 python examples/segmentation/main.py --cfg cfgs/s3dis/pointnext-xl.yaml
+CUDA_VISIBLE_DEVICES=0 python examples/segmentation/main.py --cfg cfgs/s3dis/pointnext-xl.yaml
 ```
 * change the cfg file to use any other model, *e.g.* `cfgs/s3dis/pointnet++.yaml` for training PointNet++  
 * run the command at the root directory
@@ -41,7 +41,7 @@ CUDA_VISIBLE_DEVICES=1 python examples/segmentation/main.py --cfg cfgs/s3dis/poi
 Note **testing is a must step** since evaluation in training is performed only on subsampled point clouds not original point clouds. 
 
 ```bash
-CUDA_VISIBLE_DEVICES=1 bash script/main_segmentation.sh cfgs/s3dis/pointnext-xl.yaml wandb.use_wandb=False mode=test --pretrained_path pretrained/s3dis/pointnext-xl/pointnext-xl-area5/checkpoint/pointnext-xl_ckpt_best.pth
+CUDA_VISIBLE_DEVICES=0 bash script/main_segmentation.sh cfgs/s3dis/pointnext-xl.yaml wandb.use_wandb=False mode=test --pretrained_path pretrained/s3dis/pointnext-xl/pointnext-xl-area5/checkpoint/pointnext-xl_ckpt_best.pth
 ```
 * add `visualize=True` to save segmentation results as .obj files
 
@@ -49,7 +49,7 @@ CUDA_VISIBLE_DEVICES=1 bash script/main_segmentation.sh cfgs/s3dis/pointnext-xl.
 ## Test on All Areas
 
 ```bash
-CUDA_VISIBLE_DEVICES=1 python examples/segmentation/test_s3dis_6fold.py --cfg cfgs/s3dis/pointnext-xl.yaml mode=test --pretrained_path pretrained/s3dis/pointnext-xl
+CUDA_VISIBLE_DEVICES=0 python examples/segmentation/test_s3dis_6fold.py --cfg cfgs/s3dis/pointnext-xl.yaml mode=test --pretrained_path pretrained/s3dis/pointnext-xl
 ```
 
 
@@ -57,7 +57,7 @@ CUDA_VISIBLE_DEVICES=1 python examples/segmentation/test_s3dis_6fold.py --cfg cf
 ## Profile Parameters, FLOPs, and Throughput
 
 ```bash
-CUDA_VISIBLE_DEVICES=1 python examples/profile.py --cfg cfgs/s3dis/pointnext-xl.yaml batch_size=16 num_points=15000 timing=True
+CUDA_VISIBLE_DEVICES=0 python examples/profile.py --cfg cfgs/s3dis/pointnext-xl.yaml batch_size=16 num_points=15000 timing=True flops=True
 ```
 note: 
 1. set `--cfg` to `cfgs/s3dis` to profile all models under the folder.

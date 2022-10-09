@@ -1,4 +1,4 @@
-export CUDA_VISIBLE_DEVICES=1
+export CUDA_VISIBLE_DEVICES=0
 
 # Scaobjectnn 
 # pointnet++ 
@@ -16,7 +16,7 @@ export CUDA_VISIBLE_DEVICES=1
 #  0.88235295 0.94285715 0.8589212  0.7777778  0.8454546  0.82857144
 #  0.84166664 0.97619045 0.8352941 ]
 # ckpt_pth=pretrain/scanobjectnn/scanobjectnn-train-pointnet++para-ngpus1-20220331-225749-A2A7QdqG3dKQ2WzjgsqsSZ/checkpoint/scanobjectnn-train-pointnet++para-ngpus1-20220331-225749-A2A7QdqG3dKQ2WzjgsqsSZ_ckpt_best.pth
-# CUDA_VISIBLE_DEVICES=1 bash script/main_classification.sh cfgs/scanobjectnn/pointnet++para.yaml wandb.use_wandb=False mode=test pretrained_path=$ckpt_pth 
+# CUDA_VISIBLE_DEVICES=0 bash script/main_classification.sh cfgs/scanobjectnn/pointnet++para.yaml wandb.use_wandb=False mode=test pretrained_path=$ckpt_pth 
 
 # pointnext-s
 # Loading ckpt @E233, val_macc 0.8648, val_oa 0.8810
@@ -24,4 +24,4 @@ export CUDA_VISIBLE_DEVICES=1
 #  0.89705884 0.96666664 0.90041494 0.7888889  0.8363636  0.8857143
 #  0.825      0.947619   0.91764706]
 # ckpt_pth=pretrain/scanobjectnn/scanobjectnn-train-pointnext-s-ngpus1-20220331-210738-LZsAHnzDUmMPAGHJ86pX46/checkpoint/scanobjectnn-train-pointnext-s-ngpus1-20220331-210738-LZsAHnzDUmMPAGHJ86pX46_ckpt_best.pth
-# CUDA_VISIBLE_DEVICES=1 bash script/main_classification.sh cfgs/scanobjectnn/pointnext-s.yaml wandb.use_wandb=False mode=test pretrained_path=$ckpt_pth 
+# CUDA_VISIBLE_DEVICES=0 bash script/main_classification.sh cfgs/scanobjectnn/pointnext-s.yaml wandb.use_wandb=False mode=test pretrained_path=$ckpt_pth 
