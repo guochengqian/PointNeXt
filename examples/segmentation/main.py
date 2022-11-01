@@ -671,7 +671,7 @@ def test(model, data_list, cfg, num_votes=1):
         if cfg.distributed:
             dist.all_reduce(tp), dist.all_reduce(union), dist.all_reduce(count)
         miou, macc, oa, ious, accs = get_mious(tp, union, count)
-        return miou, macc, oa, ious, accs, cm
+        return miou, macc, oa, ious, accs, all_cm
     else:
         return None, None, None, None, None, None
 
