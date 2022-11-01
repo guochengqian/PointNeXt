@@ -39,7 +39,7 @@ model:
       norm: 'bn1d'
 
 mode: finetune_encoder
-lr: 5.0e-4 # TODO: different lr for encoder and others.
+lr: 5.0e-4
 
 only_encoder: True # only load the encoder for finetuning
 log_dir: log/scanobject/pixel2point

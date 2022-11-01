@@ -63,7 +63,9 @@ def profile_model(model, cfg):
             ignore_modules=None)  # the list of modules to ignore in the profiling
         print(f'Batches\tnpoints\tParams.(M)\tGFLOPs')
         print(f'{cfg.batch_size}\t{N}\t{params / 1e6: .3f}\t{flops / (float(B) * 1e9): .2f}')
-
+    else:
+        warnings('set flops=True to calculate flops')
+        
     if cfg.get('timing', False):
         B = cfg.batch_size
         if cfg.variable:
@@ -97,6 +99,9 @@ def profile_model(model, cfg):
             time_taken = time.time() - start_time
         n_batches = n_runs * B
         print(f'Throughput (ins./s): {float(n_batches) / float(time_taken)}')
+
+    else:
+        warnings('set timing=True to calculate inference time')
 
 
 @torch.no_grad()

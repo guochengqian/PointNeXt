@@ -6,11 +6,12 @@
 #bash Miniconda3-latest-Linux-x86_64.sh
 #source ~/.bashrc
 
+
+# The following 4 lines are only for slurm machines. Just ignore the warnings if you are not using slurm. 
 export TORCH_CUDA_ARCH_LIST="6.1;6.2;7.0;7.5;8.0"   # a100: 8.0; v100: 7.0; 2080ti: 7.5; titan xp: 6.1
 module purge
 module load cuda/11.3.1
 module load gcc/7.5.0
-# make sure local cuda version is 11.1
 
 # download openpoints
 # git submodule add git@github.com:guochengqian/openpoints.git
@@ -46,7 +47,6 @@ cd ..
 cd pointops/
 python setup.py install
 cd ..
-
 
 # Blow are functions that optional. Necessary only if interested in reconstruction tasks such as completion
 cd chamfer_dist
