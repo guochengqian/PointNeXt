@@ -31,8 +31,11 @@ def test_one_room(cfg, area=5):
     cfg.dataset.common.test_area = area
     data_list = generate_data_list(cfg)
     logging.info(f"length of test dataset: {len(data_list)}")
-    test_miou, test_macc, test_oa, test_ious, test_accs, cfg.allarea_cm = test(
+    # test_miou, test_macc, test_oa, test_ious, test_accs, cfg.allarea_cm = test(
+    #     model, data_list, cfg, num_votes=1)
+    test_miou, test_macc, test_oa, test_ious, test_accs, all_cm = test(
         model, data_list, cfg, num_votes=1)
+    cfg.allarea_cm.value += all_cm.value
     with np.printoptions(precision=2, suppress=True):
         logging.info(
             f'Best ckpt @E{best_epoch},  test_oa {test_oa:.2f}, test_macc {test_macc:.2f}, test_miou {test_miou:.2f}, '
@@ -108,7 +111,8 @@ if __name__ == "__main__":
     # Get the path of each pretrained
     pretrained_paths_unorder = glob.glob(
         str(pathlib.Path(cfg.pretrained_path) / '*' / '*checkpoint*' / '*_best.pth'))
-    cfg.allarea_cm = None  # using the same cm
+    # cfg.allarea_cm = None  # using the same cm
+    cfg.allarea_cm = ConfusionMatrix(num_classes=cfg.num_classes, ignore_index=cfg.ignore_index)
 
     cfg.classes = ['ceiling',
                    'floor',
