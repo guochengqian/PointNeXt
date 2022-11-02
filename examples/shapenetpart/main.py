@@ -169,15 +169,15 @@ def main(gpu, cfg):
         if cfg.mode == 'resume':
             resume_checkpoint(cfg, model, optimizer, scheduler,
                               pretrained_path=cfg.pretrained_path)
-            metrics, cls_mious = validate_fn(
-                val_loader, model, cfg)
-            val_miou = metrics['ins_miou']
-            logging.info(f'\nresume val miou is {val_miou}\n ')
+            test_ins_miou, test_cls_miou, test_cls_mious = validate_fn(model, val_loader, cfg,
+                                                                            num_votes=cfg.num_votes,
+                                                                            data_transform=voting_transform
+                                                                            )
+
+            logging.info(f'\nresume val instance mIoU is {test_ins_miou}, val class mIoU is {test_cls_miou} \n ')
         else:
             if cfg.mode in ['val', 'test']:
                 load_checkpoint(model, pretrained_path=cfg.pretrained_path)
-                # for i in range(11, 15):
-                    # print("voting for {} times:".format(i))
                 test_ins_miou, test_cls_miou, test_cls_mious = validate_fn(model, val_loader, cfg,
                                                                             num_votes=cfg.num_votes,
                                                                             data_transform=voting_transform
