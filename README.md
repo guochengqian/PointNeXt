@@ -71,8 +71,9 @@ In the PointNeXt project, we propose a new and flexible codebase for point-based
 We provide a simple bash file to install the environment:
 
 ```
-git clone git@github.com:guochengqian/PointNeXt.git
+git clone --recurse-submodules git@github.com:guochengqian/PointNeXt.git
 cd PointNeXt
+source update.sh
 source install.sh
 ```
 Cuda-11.3 is required. Modify the `install.sh` if a different cuda version is used. See [Install](docs/index.md) for detail. 
@@ -112,10 +113,10 @@ This library is inspired by [PyTorch-image-models](https://github.com/rwightman/
 ### Citation
 If you find PointNeXt or the OpenPoints codebase useful, please cite:
 ```tex
-@Article{qian2022pointnext,
-  author  = {Qian, Guocheng and Li, Yuchen and Peng, Houwen and Mai, Jinjie and Hammoud, Hasan and Elhoseiny, Mohamed and Ghanem, Bernard},
-  journal = {arXiv:2206.04670},
+@InProceedings{qian2022pointnext,
   title   = {PointNeXt: Revisiting PointNet++ with Improved Training and Scaling Strategies},
+  author  = {Qian, Guocheng and Li, Yuchen and Peng, Houwen and Mai, Jinjie and Hammoud, Hasan and Elhoseiny, Mohamed and Ghanem, Bernard},
+  booktitle=Advances in Neural Information Processing Systems (NeurIPS),
   year    = {2022},
 }
 ```
