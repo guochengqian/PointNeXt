@@ -703,7 +703,7 @@ if __name__ == "__main__":
         f'seed{cfg.seed}',
     ]
     for i, opt in enumerate(opts):
-        if 'rank' not in opt and 'dir' not in opt and 'root' not in opt and 'pretrain' not in opt and 'path' not in opt and 'wandb' not in opt and '/' not in opt:
+        if 'rank' not in opt and 'dir' not in opt and 'root' not in opt and 'pretrain' not in opt and 'path' not in opt and 'wandb' not in opt and '/' not in opt and len(opt)<20:
             tags.append(opt)
     cfg.root_dir = os.path.join(cfg.root_dir, cfg.task_name)
 
