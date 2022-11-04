@@ -33,7 +33,8 @@ Pure Transformer models have achieved impressive success in natural language pro
 Please refer to DeiT's repo for details. 
  
 
-## S3DIS
+## Point Cloud Tasks Finetuning
+### S3DIS
 
 - finetune Image Pretrained Transformer 
   ```bash
@@ -44,15 +45,17 @@ Please refer to DeiT's repo for details.
   ```bash
   CUDA_VISIBLE_DEVICES=0 python examples/segmentation/main.py --cfg cfgs/s3dis_sphere_pix4point/pix4point.yaml mode=test  pretrained_path=<pretrained_path>
   ```
-  
- ## ScanObjectNN
+
+
+### ScanObjectNN
 
 - finetune 
   ```bash
   CUDA_VISIBLE_DEVICES=0  python examples/classification/main.py --cfg cfgs/scanobjectnn_pix4point/pvit.yaml
   ``` 
 
-## ModelNet40  
+
+### ModelNet40  
 <!-- - scratch 
   ```bash
   CUDA_VISIBLE_DEVICES=0python examples/classification/main.py --cfg cfgs/modelnet40ply2048/pix4point.yaml mode=train 
@@ -64,7 +67,7 @@ Please refer to DeiT's repo for details.
   ``` 
 
   
-## ShapeNetPart
+### ShapeNetPart
 - finetune 
   ```bash
   CUDA_VISIBLE_DEVICES=0  python examples/shapenetpart/main.py --cfg cfgs/shapenetpart_pix4point/pix4point.yaml 
@@ -72,14 +75,15 @@ Please refer to DeiT's repo for details.
 
 
   
-### Citation
+## Citation
 If you are using our code in your work, please kindly cite the following:  
 ```
-@inproceedings{qian2022pix4point,
+@article{qian2022pix4point,
   title={Pix4Point: Image Pretrained Transformers for 3D Point Cloud Understanding},
   author={Guocheng Qian, Xingdi Zhang, Abdullah Hamdi, Bernard Ghanem},
   publisher = {arXiv},
   year={2022}
-}```  
+}
+```  
 
 

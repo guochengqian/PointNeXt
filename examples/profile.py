@@ -64,7 +64,7 @@ def profile_model(model, cfg):
         print(f'Batches\tnpoints\tParams.(M)\tGFLOPs')
         print(f'{cfg.batch_size}\t{N}\t{params / 1e6: .3f}\t{flops / (float(B) * 1e9): .2f}')
     else:
-        warnings('set flops=True to calculate flops')
+        warnings.warn('set flops=True to calculate flops')
         
     if cfg.get('timing', False):
         B = cfg.batch_size
@@ -101,7 +101,7 @@ def profile_model(model, cfg):
         print(f'Throughput (ins./s): {float(n_batches) / float(time_taken)}')
 
     else:
-        warnings('set timing=True to calculate inference time')
+        warnings.warn('set timing=True to calculate inference time')
 
 
 @torch.no_grad()

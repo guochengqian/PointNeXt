@@ -31,10 +31,10 @@ More examples are available in the [paper](https://arxiv.org/abs/2206.04670).
 ### Citation
 If you find PointNeXt or the OpenPoints codebase useful, please cite:
 ```tex
-@Article{qian2022pointnext,
-  author  = {Qian, Guocheng and Li, Yuchen and Peng, Houwen and Mai, Jinjie and Hammoud, Hasan and Elhoseiny, Mohamed and Ghanem, Bernard},
-  journal = {arXiv:2206.04670},
+@InProceedings{qian2022pointnext,
   title   = {PointNeXt: Revisiting PointNet++ with Improved Training and Scaling Strategies},
+  author  = {Qian, Guocheng and Li, Yuchen and Peng, Houwen and Mai, Jinjie and Hammoud, Hasan and Elhoseiny, Mohamed and Ghanem, Bernard},
+  booktitle=Advances in Neural Information Processing Systems (NeurIPS),
   year    = {2022},
 }
 ```

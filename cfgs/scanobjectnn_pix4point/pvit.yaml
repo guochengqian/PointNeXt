@@ -20,12 +20,12 @@ model:
       NAME: PointPatchEmbed
       feature_type: 'dp'
       reduction: 'max'
-      sample_ratio: 0.25  # ablation: 0.25
+      sample_ratio: 0.25 
       normalize_dp: False 
       group_size: 32
       subsample: 'fps'
       group: 'knn'
-      norm_args: bn # ablation: in
+      norm_args: bn
       conv_args:
         order: conv-norm-act
       layers: 4

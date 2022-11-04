@@ -66,3 +66,16 @@ CUDA_VISIBLE_DEVICES=$GPUs python examples/$task_folder/main.py --cfg $cfg $kwar
 - $cfg is the path to cfg, for example, s3dis segmentation, $cfg=cfgs/s3dis/pointnext-s.yaml
 
 - $kwargs is used to overwrite the default configs. E.g. overwrite the batch size, just appending `batch_size=32` or `--batch_size 32`.  As another example, testing in S3DIS area 5, $kwargs should be `mode=test --pretrained_path $pretrained_path`. 
+
+
+## Model Profiling (FLOPs, Throughputs, and Parameters)
+
+```
+CUDA_VISIBLE_DEVICES=0 python examples/profile.py --cfg $cfg  batch_size=$bs num_points=$pts timing=True flops=True
+```
+
+For example, profile PointNeXt-S classification model as mentioned in paper:
+
+- $cfg = cfgs/scanobjectnn/pointnext-s.yaml
+- $bs = 128
+- $pts = 1024

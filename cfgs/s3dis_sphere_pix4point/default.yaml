@@ -15,11 +15,12 @@ dataset:
     split: val
     num_epochs: 20
 num_classes: 13
-batch_size: 16 
+batch_size: 16
 dataloader:
   num_workers: 6
 
 feature_keys: x
+
 use_mask: True
 criterion_args:
   NAME: CrossEntropy

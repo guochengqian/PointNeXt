@@ -7,11 +7,11 @@
 #source ~/.bashrc
 
 
-# The following 4 lines are only for slurm machines. Just ignore the warnings if you are not using slurm. 
-export TORCH_CUDA_ARCH_LIST="6.1;6.2;7.0;7.5;8.0"   # a100: 8.0; v100: 7.0; 2080ti: 7.5; titan xp: 6.1
-module purge
-module load cuda/11.3.1
-module load gcc/7.5.0
+# The following 4 lines are only for slurm machines. uncomment if needed.  
+# export TORCH_CUDA_ARCH_LIST="6.1;6.2;7.0;7.5;8.0"   # a100: 8.0; v100: 7.0; 2080ti: 7.5; titan xp: 6.1
+# module purge
+# module load cuda/11.3.1
+# module load gcc/7.5.0
 
 # download openpoints
 # git submodule add git@github.com:guochengqian/openpoints.git
@@ -24,12 +24,10 @@ conda env remove --name openpoints
 conda create -n openpoints -y python=3.7 numpy=1.20 numba
 conda activate openpoints
 
+# please always double check installation for pytorch and torch-scatter from the official documentation
 conda install -y pytorch=1.10.1 torchvision cudatoolkit=11.3 -c pytorch -c nvidia
-
-# install relevant packages
-# torch-scatter is a must, and others are optional
 pip install torch-scatter -f https://data.pyg.org/whl/torch-1.10.1+cu113.html
-# pip install torch-scatter torch-sparse torch-cluster torch-geometric -f https://data.pyg.org/whl/torch-1.10.1+cu113.html
+
 pip install -r requirements.txt
 
 # install cpp extensions, the pointnet++ library
