@@ -18,8 +18,8 @@ model:
       norm: 'ln'
       eps: 1.0e-6
     embed_args:
-      NAME: PointPatchEmbed # the best. 
-      feature_type: 'dp_df' # the best. 0.3 gain over dp_fj. and 2.0 gain over dp
+      NAME: P3Embed 
+      feature_type: 'dp_df' 
       reduction: 'max'
       sample_ratio: 0.0625
       normalize_dp: False 
@@ -35,6 +35,7 @@ model:
     NAME: PointViTPartDecoder
     channel_scaling: 1
     global_feat: cls,max,avg
+    progressive_input: True
   cls_args:
     NAME: SegHead
     num_classes: 50

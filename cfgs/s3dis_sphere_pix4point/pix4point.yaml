@@ -18,7 +18,7 @@ model:
       norm: 'ln'
       eps: 1.0e-6
     embed_args:
-      NAME: PointPatchEmbed
+      NAME: P3Embed
       feature_type: 'dp_df' # show an abaltion study of this.
       reduction: 'max'
       sample_ratio: 0.0625
@@ -35,6 +35,7 @@ model:
     NAME: PointViTDecoder
     channel_scaling: 1
     global_feat: cls,max
+    progressive_input: True
   cls_args: 
     NAME: SegHead
     num_classes: 13

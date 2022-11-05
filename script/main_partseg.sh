@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 #SBATCH -N 1
 #SBATCH --array=0
-#SBATCH -J partseg 
+#SBATCH -J partseg
 #SBATCH -o slurm_logs/%x.%3a.%A.out
 #SBATCH -e slurm_logs/%x.%3a.%A.err
 #SBATCH --time=24:00:00
-#SBATCH --gres=gpu:1
-#SBATCH --constraint=[v100]
+##SBATCH --gres=gpu:4
+##SBATCH --constraint=[v100]
+#SBATCH --gpus=4
+#SBATCH --nodes=1
 #SBATCH --cpus-per-gpu=6
-#SBATCH --mem=30G
-##SBATCH --mail-type=FAIL,TIME_LIMIT,TIME_LIMIT_90
+##SBATCH --mem=30G
 
 
 [ ! -d "slurm_logs" ] && echo "Create a directory slurm_logs" && mkdir -p slurm_logs
