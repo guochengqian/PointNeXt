@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 #SBATCH -N 1
 #SBATCH --array=0
-#SBATCH -J partseg 
+#SBATCH -J partseg
 #SBATCH -o slurm_logs/%x.%3a.%A.out
 #SBATCH -e slurm_logs/%x.%3a.%A.err
 #SBATCH --time=24:00:00
+#SBATCH --nodes=1
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-gpu=6
 ##SBATCH --constraint=[v100]
