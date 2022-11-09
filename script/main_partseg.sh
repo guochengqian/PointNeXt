@@ -6,9 +6,9 @@
 #SBATCH -e slurm_logs/%x.%3a.%A.err
 #SBATCH --time=24:00:00
 #SBATCH --gres=gpu:1
-#SBATCH --constraint=[v100]
 #SBATCH --cpus-per-gpu=6
-#SBATCH --mem=30G
+##SBATCH --constraint=[v100]
+##SBATCH --mem=30G
 ##SBATCH --mail-type=FAIL,TIME_LIMIT,TIME_LIMIT_90
 
 

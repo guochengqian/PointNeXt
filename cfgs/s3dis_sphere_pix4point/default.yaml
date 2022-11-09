@@ -15,7 +15,7 @@ dataset:
     split: val
     num_epochs: 20
 num_classes: 13
-batch_size: 16
+batch_size: 8
 dataloader:
   num_workers: 6
 

@@ -2,7 +2,7 @@ model:
   NAME: BasePartSeg
   encoder_args:
     NAME: PointViT
-    in_channels: 7 
+    in_channels: 3 
     embed_dim: 384
     depth: 12
     num_heads: 6

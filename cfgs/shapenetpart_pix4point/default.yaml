@@ -14,7 +14,7 @@ num_classes: 50
 shape_classes: 16
 num_points: 2048
 normal_channel: True
-feature_keys: pos,x,heights
+feature_keys: x
 
 datatransforms:
   train: [ PointsToTensor, PointCloudScaling,PointCloudCenterAndNormalize,PointCloudJitter,ChromaticDropGPU]

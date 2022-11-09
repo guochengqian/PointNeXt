@@ -5,10 +5,10 @@
 #SBATCH -o slurm_logs/%x.%3a.%A.out
 #SBATCH -e slurm_logs/%x.%3a.%A.err
 #SBATCH --time=6:00:00
-##SBATCH --gres=gpu:v100:1
-#SBATCH --gpus=1
 #SBATCH --nodes=1
+#SBATCH --gpus=1
 #SBATCH --cpus-per-gpu=6
+##SBATCH --gres=gpu:v100:1
 ##SBATCH --mem=30G
 
 module load cuda/11.1.1
