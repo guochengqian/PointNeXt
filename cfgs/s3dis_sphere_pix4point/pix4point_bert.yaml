@@ -1,11 +1,11 @@
 model:
-  NAME: BasePartSeg
+  NAME: BaseSeg
   encoder_args:
     NAME: PointViT
-    in_channels: 7 
-    embed_dim: 384
-    depth: 12
-    num_heads: 6
+    in_channels: 3
+    embed_dim: 512 
+    depth: 8
+    num_heads: 8
     mlp_ratio: 4.
     drop_rate: 0.
     attn_drop_rate: 0.0
@@ -13,13 +13,13 @@ model:
     add_pos_each_block: True
     qkv_bias: True
     act_args:
-      act: 'gelu'
+      act: 'gelu' # better than relu
     norm_args:
       norm: 'ln'
       eps: 1.0e-6
     embed_args:
-      NAME: P3Embed 
-      feature_type: 'dp_df' 
+      NAME: P3Embed
+      feature_type: 'dp_df' # show an abaltion study of this.
       reduction: 'max'
       sample_ratio: 0.0625
       normalize_dp: False 
@@ -30,19 +30,19 @@ model:
         order: conv-norm-act
       layers: 4
       norm_args: 
-        norm: 'bn'
+        norm: 'ln2d'
   decoder_args:
-    NAME: PointViTPartDecoder
+    NAME: PointViTDecoder
     channel_scaling: 1
-    global_feat: cls,max,avg
+    global_feat: cls,max
     progressive_input: True
-  cls_args:
+  cls_args: 
     NAME: SegHead
-    num_classes: 50
-    mlps: [256]
+    num_classes: 13
     in_channels: null
-    norm_args:
-      norm: 'bn'
+    mlps: [256]
+    norm_args: 
+      norm: 'ln1d'
 
 mode: finetune_encoder
-pretrained_path: pretrained/imagenet/small_21k_224.pth
+pretrained_path: pretrained/bert_m_l8c512.bin

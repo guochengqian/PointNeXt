@@ -17,8 +17,8 @@ model:
       norm: 'ln'
       eps: 1.0e-6
     embed_args:
-      NAME: PointPatchEmbed
-      feature_type: 'dp'
+      NAME: P3Embed
+      feature_type: 'dp_df'
       reduction: 'max'
       sample_ratio: 0.25 
       normalize_dp: False 
@@ -29,7 +29,6 @@ model:
       conv_args:
         order: conv-norm-act
       layers: 4
-      channels: [128, 256, 512]
     global_feat: cls,max,avg
   cls_args: 
     NAME: ClsHead 

@@ -15,6 +15,8 @@ num_points: 1024  # the number of points passed into model
 num_classes: &nclass
   15
 
+feature_keys: pos,x
+
 datatransforms:
   train: [PointsToTensor, PointCloudScaling, PointCloudCenterAndNormalize, PointCloudRotation]
   vote: [PointCloudRotation]

@@ -54,7 +54,7 @@ def main(gpu, cfg, profile=False):
         dist.init_process_group(backend=cfg.dist_backend,
                                 init_method=cfg.dist_url,
                                 world_size=cfg.world_size,
-                                rank=cfg.rank) 
+                                rank=cfg.rank)
         dist.barrier()
     # logger
     setup_logger_dist(cfg.log_path, cfg.rank, name=cfg.dataset.common.NAME)
@@ -66,7 +66,7 @@ def main(gpu, cfg, profile=False):
     set_random_seed(cfg.seed + cfg.rank, deterministic=cfg.deterministic)
     torch.backends.cudnn.enabled = True
     logging.info(cfg)
-    
+
     if not cfg.model.get('criterion_args', False):
         cfg.model.criterion_args = cfg.criterion_args
     model = build_model_from_cfg(cfg.model).to(cfg.rank)
@@ -237,7 +237,7 @@ def train_one_epoch(model, train_loader, optimizer, scheduler, epoch, cfg):
         points = data['x']
         target = data['y']
         """ bebug
-        from openpoints.dataset import vis_points 
+        from openpoints.dataset import vis_points
         vis_points(data['pos'].cpu().numpy()[0])
         """
         num_curr_pts = points.shape[1]

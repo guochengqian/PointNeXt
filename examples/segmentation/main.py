@@ -702,10 +702,12 @@ if __name__ == "__main__":
         f'ngpus{cfg.world_size}',
         f'seed{cfg.seed}',
     ]
+    opt_list = [] # for checking experiment configs from logging file
     for i, opt in enumerate(opts):
-        if 'rank' not in opt and 'dir' not in opt and 'root' not in opt and 'pretrain' not in opt and 'path' not in opt and 'wandb' not in opt and '/' not in opt and len(opt)<20:
-            tags.append(opt)
+        if 'rank' not in opt and 'dir' not in opt and 'root' not in opt and 'pretrain' not in opt and 'path' not in opt and 'wandb' not in opt and '/' not in opt:
+            opt_list.append(opt)
     cfg.root_dir = os.path.join(cfg.root_dir, cfg.task_name)
+    cfg.opts = '-'.join(opt_list)
 
     cfg.is_training = cfg.mode not in ['test', 'testing', 'val', 'eval', 'evaluation']
     if cfg.mode in ['resume', 'val', 'test']:
