@@ -29,7 +29,7 @@ model:
       conv_args:
         order: conv-norm-act
       layers: 4
-    global_feat: cls,max,avg
+    global_feat: max,cls
   cls_args: 
     NAME: ClsHead 
     num_classes: 15
@@ -37,7 +37,7 @@ model:
     norm_args: 
       norm: 'bn1d'
 
-pretrained_path: pretrained/imagenet/small_21k_224.pth
+pretrained_path: pretrained/imagenet/mae_s.pth
 mode: finetune_encoder
 
 # ---------------------------------------------------------------------------- #

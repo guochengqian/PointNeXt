@@ -19,7 +19,7 @@ batch_size: 8
 dataloader:
   num_workers: 6
 
-feature_keys: x
+feature_keys: pos,x,heights
 
 use_mask: True
 criterion_args:

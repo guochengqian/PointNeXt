@@ -2,7 +2,7 @@ model:
   NAME: BaseSeg
   encoder_args:
     NAME: PointViT
-    in_channels: 3
+    in_channels: 7
     embed_dim: 384
     depth: 12
     num_heads: 6
@@ -45,4 +45,4 @@ model:
       norm: 'ln1d'
 
 mode: finetune_encoder
-pretrained_path: pretrained/imagenet/small_21k_224.pth
+pretrained_path: pretrained/imagenet/mae_s.pth
