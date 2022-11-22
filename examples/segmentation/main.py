@@ -3,7 +3,6 @@
 This file currently supports training and testing on S3DIS
 If more than 1 GPU is provided, will launch multi processing distributed training by default
 if you only wana use 1 GPU, set `CUDA_VISIBLE_DEVICES` accordingly
-Author: Guocheng Qian @ 2022, guocheng.qian@kaust.edu.sa
 """
 import __init__
 import argparse, yaml, os, logging, numpy as np, csv, wandb, glob
@@ -488,24 +487,19 @@ def validate_sphere(model, val_loader, cfg, num_votes=1, data_transform=None):
         gt = cfg.cmap[gt, :]
         pred = cfg.cmap[pred, :]
         # output pred labels
-        if 's3dis' in dataset_name:
-            file_name = f'{dataset_name}'
-        else:
-            file_name = f'{dataset_name}'
-
         # save per room
         rooms = val_loader.dataset.clouds_rooms[0]
 
         for idx in tqdm(range(len(rooms)-1), desc='save visualization'):
             start_idx, end_idx = rooms[idx], rooms[idx+1]
-            # write_obj(coord[start_idx:end_idx], colors[start_idx:end_idx],
-            #             os.path.join(cfg.vis_dir, f'input-{file_name}-{idx}.obj'))
-            # # output ground truth labels
-            # write_obj(coord[start_idx:end_idx], gt[start_idx:end_idx],
-            #             os.path.join(cfg.vis_dir, f'gt-{file_name}-{idx}.obj'))
-            # # output pred labels
+            write_obj(coord[start_idx:end_idx], colors[start_idx:end_idx],
+                        os.path.join(cfg.vis_dir, f'input-{dataset_name}-{idx}.obj'))
+            # output ground truth labels
+            write_obj(coord[start_idx:end_idx], gt[start_idx:end_idx],
+                        os.path.join(cfg.vis_dir, f'gt-{dataset_name}-{idx}.obj'))
+            # output pred labels
             write_obj(coord[start_idx:end_idx], pred[start_idx:end_idx],
-                        os.path.join(cfg.vis_dir, f'pix4point-{file_name}-{idx}.obj'))
+                        os.path.join(cfg.vis_dir, f'{cfg.cfg_basename}-{dataset_name}-{idx}.obj'))
     return miou, macc, oa, ious, accs
 
 
@@ -629,7 +623,7 @@ def test(model, data_list, cfg, num_votes=1):
                         os.path.join(cfg.vis_dir, f'gt-{file_name}.obj'))
             # output pred labels
             write_obj(coord, pred,
-                      os.path.join(cfg.vis_dir, f'pred-{file_name}.obj'))
+                      os.path.join(cfg.vis_dir, f'{cfg.cfg_basename}-{file_name}.obj'))
 
         if cfg.get('save_pred', False):
             if 'semantickitti' in cfg.dataset.common.NAME.lower():

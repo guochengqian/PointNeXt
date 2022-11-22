@@ -17,8 +17,8 @@ normal_channel: True
 feature_keys: pos,x,heights
 
 datatransforms:
-  train: [ PointsToTensor, PointCloudScaling,PointCloudCenterAndNormalize,PointCloudJitter,ChromaticDropGPU]
-  val: [ PointsToTensor, PointCloudCenterAndNormalize ]
+  train: [PointsToTensor, PointCloudScaling,PointCloudCenterAndNormalize,PointCloudJitter,ChromaticDropGPU]
+  val: [PointsToTensor, PointCloudCenterAndNormalize ]
   vote: [PointCloudScaling]
   kwargs:
     jitter_sigma: 0.001
