@@ -1,7 +1,7 @@
 ## Improving Standard Transformer Models for 3D Point Cloud Understanding with Image Pretraining
 *by [Guocheng Qian](https://www.gcqian.com/), [Xingdi Zhang](https://cemse.kaust.edu.sa/cs/people/person/xingdi-zhang-0), [ Abdullah Hamdi](https://abdullahamdi.com/), [Bernard Ghanem](https://www.bernardghanem.com/)*
 <p align="center">
-<img src="misc/pix4point.png" width=100% height=100% class="center">
+<img src="../misc/pix4point.png" width=100% height=100% class="center">
 </p>
 
 
