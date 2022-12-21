@@ -327,7 +327,7 @@ def main(gpu, cfg):
         logging.warning('Testing using multiple GPUs is not allowed for now. Running testing after this training is required.')
     if writer is not None:
         writer.close()
-    dist.destroy_process_group()
+    # dist.destroy_process_group() # comment this line due to https://github.com/guochengqian/PointNeXt/issues/95
     wandb.finish(exit_code=True)
 
 
