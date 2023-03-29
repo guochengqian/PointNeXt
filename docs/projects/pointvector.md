@@ -18,7 +18,10 @@
 
 In point cloud analysis, point-based methods have rapidly developed in recent years. These methods have recently focused on concise MLP structures, such as PointNeXt, which have demonstrated competitiveness with Convolutional and Transformer structures. However, standard MLPs are limited in their ability to extract local features effectively. To address this limitation, we propose a Vector-oriented Point Set Abstraction that can aggregate neighboring features through higher-dimensional vectors. To facilitate network optimization, we construct a transformation from scalar to vector using independent angles based on 3D vector rotations. Finally, we develop a PointVector model that follows the structure of PointNeXt. Our experimental results demonstrate that PointVector achieves state-of-the-art performance $\textbf{72.3\% mIOU}$ on the S3DIS Area 5 and $\textbf{78.4\% mIOU}$ on the S3DIS (6-fold cross-validation) with only $\textbf{58\%}$ model parameters of PointNeXt. We hope our work will help the exploration of concise and effective feature representations. The code will be released soon.
 
+### Note
+Since there is a small difference in the model code used in different datasets, mainly in the use of batchnorm and leakyrelu and relu, we have integrated it. However, some of the experiments fluctuated a lot, so we did not run them more than once, but at the same time put the original code into the checkpoint link, which is the pointvector.py in the folder, and in fact the original network structure is equivalent to our existing code.
 
+The modelnet40c showed a small difference, but it was acceptable.
 ### Visualization
 More examples are available in the [paper](https://arxiv.org/pdf/2205.10528.pdf).
 
