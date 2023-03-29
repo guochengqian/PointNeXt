@@ -16,7 +16,7 @@ Throughput is measured with 128 x 1024 points.
 | PointNet++ | 77.9 / 75.4 | [86.2 / 84.4](https://drive.google.com/drive/folders/1T7uvQW4cLp65DnaEWH9eREH4XKTKnmks?usp=sharing) | 1.5M | 1.7G | 1872 |
 | **PointNeXt-S** |87.7±0.4 / 85.8±0.6 | [88.20 / 86.84](https://drive.google.com/drive/folders/1A584C9x5uAqppbjNNiVqlA_7uOOOlEII?usp=sharing) | 1.4M | 1.64G | 2040 |
 | **Pix4Point** |87.9 / 86.7 | [87.9 / 86.7 ](https://drive.google.com/drive/folders/1VyAWEYZF-nXIp0zIuCqnpFYwVmJjHihR?usp=share_link) | 22.6M | 28.0G | - |
-
+| **PointVector**|87.8±0.4 / 86.2±0.5 | [88.17 / 86.69](https://drive.google.com/drive/folders/1Bxbf7MO_uK-28IWYRe1pWmILenDeL7Xk?usp=sharing) | 1.55 | - | 901 |
 
 
 ### S3IDS (6-fold) Segmentation
@@ -30,7 +30,8 @@ Throughput (TP) is measured with 16 x 15000 points.
 | **PointNeXt-B** |   71.5 / 88.8 / 80.2   |     [71.5 / 88.8 / 80.2](https://drive.google.com/drive/folders/1UJj-tvexA74DYSFpNYdPRmMznJ1-tjTO?usp=sharing)      | 3.8M   | 8.8G | 158 |
 | **PointNeXt-L** |   73.9 / 89.8 / 82.2   |     [73.9 / 89.8 / 82.2](https://drive.google.com/drive/folders/1VhL1klLDgRVx1O1PN4XN64S3BYkRvmkV?usp=sharing)      | 7.1M   | 15.2G | 115 |
 | **PointNeXt-XL** |   74.9 / 90.3 / 83.0   |     [74.9 / 90.3 / 83.0](https://drive.google.com/drive/folders/19n7jmB7NNKiIL_jb3Wq3hY-CQDx23q7u?usp=sharing)      | 41.6M | 84.8G | 46 |
-
+| **PointVector-L** |   77.4 / 91.4 / 85.5   |     [77.4 / 91.4 / 85.5](https://drive.google.com/drive/folders/1zpkUwawIbKf9mFsyKbFoAYere0AiCFmJ?usp=sharing)      | 4.2M | 10.7G | 98 |
+| **PointVector-XL** |   78.4 / 91.9 / 86.1   |     [78.4 / 91.9 / 86.1](https://drive.google.com/drive/folders/1-iIrZtE_CNaUDPPm1MMkLhmsYtb3Fdf0?usp=sharing)      | 24.1M | 58.5G | 40 |
 
 
 ### S3DIS (Area 5) Segmentation
@@ -47,7 +48,8 @@ Throughput (TP) is measured with 16 x 15000 points.
 | **PointNeXt-L**  | 69.0±0.5 / 90.0±0.1 / 75.3±0.8 |                    [69.3 / 90.1 / 75.7](https://drive.google.com/drive/folders/1g4qE6g10zoZY5y6LPDQ5g12DvSLbnCnj?usp=sharing)                    |  7.1M   | 15.2G | 115  |
 | **PointNeXt-XL** | 70.5±0.3 / 90.6±0.2 / 76.8±0.7 | [71.1 / 91.0 / 77.2](https://drive.google.com/drive/folders/1rng7YmfzzIGtXREn7jW0vVFmSSakLQs4?usp=sharing) |   41.6M | 84.8G | 46  |
 | **Pix4Point** | 69.6 / 89.9 / 75.2 | [69.6 / 89.9 / 75.2](https://drive.google.com/drive/folders/1WaJwwWRmv_XtApYKuslPw-hkK0EHvnaE?usp=share_link) |   23.7M | 190G | - |
-
+| **PointVector-L** |   71.2 / 90.8 / 77.3   |     [71.2 / 90.8 / 77.3](https://drive.google.com/drive/folders/1w3krP8p_OGpWETwK4ynA3XM4QShKloQW?usp=sharing)      | - | - | - |
+| **PointVector-XL** |   72.3 / 91.0 / 78.1   |     [72.61 / 91.59 / 78.3](https://drive.google.com/drive/folders/1qaojo6G8S1L1UTl8ZBVIl-qYXwm5od2U?usp=sharing)      | 24.1M | 58.5G | 40 |
 
 ### ShapeNetpart Part Segmentation
 
@@ -60,6 +62,7 @@ Throughput (TP) is measured with 64*2048 points.
 | **PointNeXt-S (C=64)**  | 86.9±0.0 / 84.8±0.5 |                    [86.9 / 85.2](https://drive.google.com/drive/u/1/folders/1qGue_R313Ej9xa_VaQGrFHiHoVdD8e8A?usp=sharing)                    |
 | **PointNeXt-S (C=160)**  | 87.0±0.1 / 85.2±0.1  |                    [87.1 / 85.4](https://drive.google.com/drive/u/1/folders/1hYxwuAMXo2HRtqEYe0_frjcVD8JDecb6?usp=sharing)                    | 
 | **Pix4Point**  | 86.8 / 85.6  |  [86.8 / 85.6](https://drive.google.com/drive/folders/1cHW8phXBB-eOohZ04iUpbo1ulAE2qQkQ?usp=share_link)                    | 
+| **PointVector-S (C=64)**  | 86.9 / - |                    [86.9 / 85.05](https://drive.google.com/drive/folders/1gu7FUoI6HOaWbWk9VttcR469Fn98O7D_?usp=sharing)                    |
 
 
 
@@ -69,3 +72,4 @@ Throughput (TP) is measured with 64*2048 points.
 |:---:|:---:|:---:|:---:| :---:|:---:|
 | PointNet++ | 91.9 / - | [93.0 / 90.7](https://drive.google.com/drive/folders/1Re2_NCtZBKxIhtv755LlnHjz-FBPWjgW?usp=sharing) | 1.5M | 1.7G | 1872 |
 | **PointNeXt-S** (C=64) | 93.7±0.3 / 90.9±0.5 | [94.0 / 91.1](https://drive.google.com/drive/folders/14biOHuvH8b2F03ZozrWyF45tCmtsorYN?usp=sharing) | 4.5M | 6.5G | 2033 |
+| **PointVector-S** (C=64) | 93.5±0.2 / 91.0±0.5 | [93.68 / 91.53](https://drive.google.com/drive/folders/1I_Xv4o8GdQKaNeEcHTW6e0ZjchuxHjlT?usp=sharing) | - | - | - |
