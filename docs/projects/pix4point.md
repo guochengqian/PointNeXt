@@ -38,12 +38,12 @@ Please refer to DeiT's repo for details.
 
 - finetune Image Pretrained Transformer 
   ```bash
-  CUDA_VISIBLE_DEVICES=0 python examples/segmentation/main.py --cfg cfgs/s3dis_sphere_pix4point/pix4point.yaml
+  CUDA_VISIBLE_DEVICES=0 python examples/segmentation/main.py --cfg cfgs/s3dis_pix4point/pix4point.yaml
   ```
 
 - test
   ```bash
-  CUDA_VISIBLE_DEVICES=0 python examples/segmentation/main.py --cfg cfgs/s3dis_sphere_pix4point/pix4point.yaml mode=test  pretrained_path=<pretrained_path>
+  CUDA_VISIBLE_DEVICES=0 python examples/segmentation/main.py --cfg cfgs/s3dis_pix4point/pix4point.yaml mode=test  pretrained_path=<pretrained_path>
   ```
 
 
@@ -87,5 +87,3 @@ If you are using our code in your work, please kindly cite the following:
     primaryClass={cs.CV}
 }
 ``` 
-
-

@@ -12,7 +12,7 @@ from torch import distributed as dist, multiprocessing as mp
 from torch.utils.tensorboard import SummaryWriter
 from torch_scatter import scatter
 from openpoints.utils import set_random_seed, save_checkpoint, load_checkpoint, resume_checkpoint, setup_logger_dist, \
-    cal_model_parm_nums, Wandb, generate_exp_directory, resume_exp_directory, EasyConfig, dist_utils, find_free_port
+    cal_model_parm_nums, Wandb, generate_exp_directory, resume_exp_directory, EasyConfig, dist_utils, find_free_port, load_checkpoint_inv
 from openpoints.utils import AverageMeter, ConfusionMatrix, get_mious
 from openpoints.dataset import build_dataloader_from_cfg, get_features_by_keys, get_class_weights
 from openpoints.dataset.data_util import voxelize
@@ -174,7 +174,7 @@ def main(gpu, cfg):
         else:
             if cfg.mode == 'val':
                 best_epoch, best_val = load_checkpoint(model, pretrained_path=cfg.pretrained_path)
-                val_miou, val_macc, val_oa, val_ious, val_accs = validate_fn(model, val_loader, cfg, num_votes=1)
+                val_miou, val_macc, val_oa, val_ious, val_accs = validate_fn(model, val_loader, cfg, num_votes=1, epoch=epoch)
                 with np.printoptions(precision=2, suppress=True):
                     logging.info(
                         f'Best ckpt @E{best_epoch},  val_oa , val_macc, val_miou: {val_oa:.2f} {val_macc:.2f} {val_miou:.2f}, '
@@ -196,8 +196,13 @@ def main(gpu, cfg):
                 return test_miou
 
             elif 'encoder' in cfg.mode:
-                logging.info(f'Finetuning from {cfg.pretrained_path}')
-                load_checkpoint(model_module.encoder, cfg.pretrained_path, cfg.get('pretrained_module', None))
+                if 'inv' in cfg.mode:
+                    logging.info(f'Finetuning from {cfg.pretrained_path}')
+                    load_checkpoint_inv(model.encoder, cfg.pretrained_path)
+                else:
+                    logging.info(f'Finetuning from {cfg.pretrained_path}')
+                    load_checkpoint(model_module.encoder, cfg.pretrained_path, cfg.get('pretrained_module', None))
+
             else:
                 logging.info(f'Finetuning from {cfg.pretrained_path}')
                 load_checkpoint(model, cfg.pretrained_path, cfg.get('pretrained_module', None))
@@ -243,7 +248,7 @@ def main(gpu, cfg):
 
         is_best = False
         if epoch % cfg.val_freq == 0:
-            val_miou, val_macc, val_oa, val_ious, val_accs = validate_fn(model, val_loader, cfg)
+            val_miou, val_macc, val_oa, val_ious, val_accs = validate_fn(model, val_loader, cfg, epoch=epoch)
             if val_miou > best_val:
                 is_best = True
                 best_val = val_miou
@@ -295,7 +300,8 @@ def main(gpu, cfg):
         load_checkpoint(model, pretrained_path=os.path.join(cfg.ckpt_dir, f'{cfg.run_name}_ckpt_best.pth'))
         cfg.csv_path = os.path.join(cfg.run_dir, cfg.run_name + f'.csv')
         if 'sphere' in cfg.dataset.common.NAME.lower():
-            test_miou, test_macc, test_oa, test_ious, test_accs = validate_sphere(model, val_loader, cfg)
+            # TODO: 
+            test_miou, test_macc, test_oa, test_ious, test_accs = validate_sphere(model, val_loader, cfg, epoch=epoch)
         else:
             data_list = generate_data_list(cfg)
             test_miou, test_macc, test_oa, test_ious, test_accs, _ = test(model, data_list, cfg)
@@ -313,7 +319,7 @@ def main(gpu, cfg):
             load_checkpoint(model, pretrained_path=os.path.join(cfg.ckpt_dir, f'{cfg.run_name}_ckpt_best.pth'))
             set_random_seed(cfg.seed)
             val_miou, val_macc, val_oa, val_ious, val_accs = validate_fn(model, val_loader, cfg, num_votes=20,
-                                                                         data_transform=data_transform)
+                                                                         data_transform=data_transform, epoch=epoch)
             if writer is not None:
                 writer.add_scalar('val_miou20', val_miou, cfg.epochs + 50)
 
@@ -349,6 +355,7 @@ def train_one_epoch(model, train_loader, criterion, optimizer, scheduler, scaler
         vis_points(data['pos'].cpu().numpy()[0], data['x'][0, :3, :].transpose(1, 0))
         end of debug """
         data['x'] = get_features_by_keys(data, cfg.feature_keys)
+        data['epoch'] = epoch
         with torch.cuda.amp.autocast(enabled=cfg.use_amp):
             logits = model(data)
             loss = criterion(logits, target) if 'mask' not in cfg.criterion_args.NAME.lower() \
@@ -386,7 +393,7 @@ def train_one_epoch(model, train_loader, criterion, optimizer, scheduler, scaler
 
 
 @torch.no_grad()
-def validate(model, val_loader, cfg, num_votes=1, data_transform=None):
+def validate(model, val_loader, cfg, num_votes=1, data_transform=None, epoch=-1):
     model.eval()  # set model to eval mode
     cm = ConfusionMatrix(num_classes=cfg.num_classes, ignore_index=cfg.ignore_index)
     pbar = tqdm(enumerate(val_loader), total=val_loader.__len__(), desc='Val')
@@ -396,6 +403,7 @@ def validate(model, val_loader, cfg, num_votes=1, data_transform=None):
             data[key] = data[key].cuda(non_blocking=True)
         target = data['y'].squeeze(-1)
         data['x'] = get_features_by_keys(data, cfg.feature_keys)
+        data['epoch'] = epoch
         logits = model(data)
         if 'mask' not in cfg.criterion_args.NAME or cfg.get('use_maks', False):
             cm.update(logits.argmax(dim=1), target)
@@ -430,7 +438,7 @@ def validate(model, val_loader, cfg, num_votes=1, data_transform=None):
 
 
 @torch.no_grad()
-def validate_sphere(model, val_loader, cfg, num_votes=1, data_transform=None):
+def validate_sphere(model, val_loader, cfg, num_votes=1, data_transform=None, epoch=-1):
     """
     validation for sphere sampled input points with mask.
     in this case, between different batches, there are overlapped points.
@@ -451,6 +459,7 @@ def validate_sphere(model, val_loader, cfg, num_votes=1, data_transform=None):
         for key in data.keys():
             data[key] = data[key].cuda(non_blocking=True)
         data['x'] = get_features_by_keys(data, cfg.feature_keys)
+        data['epoch'] = epoch
         logits = model(data)
         all_logits.append(logits)
         idx_points.append(data['input_inds'])

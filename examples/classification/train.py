@@ -3,7 +3,7 @@ from tqdm import tqdm
 import torch, torch.nn as nn
 from torch import distributed as dist
 from torch.utils.tensorboard import SummaryWriter
-from openpoints.utils import set_random_seed, save_checkpoint, load_checkpoint, resume_checkpoint, setup_logger_dist, \
+from openpoints.utils import set_random_seed, save_checkpoint, load_checkpoint, load_checkpoint_inv, resume_checkpoint, setup_logger_dist, \
     cal_model_parm_nums, Wandb
 from openpoints.utils import AverageMeter, ConfusionMatrix, get_mious
 from openpoints.dataset import build_dataloader_from_cfg
@@ -148,6 +148,10 @@ def main(gpu, cfg, profile=False):
                 # finetune the whole model
                 logging.info(f'Finetuning from {cfg.pretrained_path}')
                 load_checkpoint(model.encoder, cfg.pretrained_path)
+            elif cfg.mode == 'finetune_encoder_inv':
+                # finetune the whole model
+                logging.info(f'Finetuning from {cfg.pretrained_path}')
+                load_checkpoint_inv(model.encoder, cfg.pretrained_path)
     else:
         logging.info('Training from scratch')
     train_loader = build_dataloader_from_cfg(cfg.batch_size,
