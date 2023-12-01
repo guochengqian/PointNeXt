@@ -5,11 +5,12 @@
 #SBATCH -o slurm_logs/%x.%3a.%A.out
 #SBATCH -e slurm_logs/%x.%3a.%A.err
 #SBATCH --time=10:00:00
-#SBATCH --gpus=1
+##SBATCH --gpus=1
 #SBATCH --nodes=1
 #SBATCH --cpus-per-gpu=6
-##SBATCH --gres=gpu:v100:1
-##SBATCH --mem=30G
+#SBATCH --mem=40G
+#SBATCH --gres=gpu:a100:1
+
 
 [ ! -d "slurm_logs" ] && echo "Create a directory slurm_logs" && mkdir -p slurm_logs
 

@@ -8,10 +8,10 @@
 
 
 # The following 4 lines are only for slurm machines. uncomment if needed.  
-# export TORCH_CUDA_ARCH_LIST="6.1;6.2;7.0;7.5;8.0"   # a100: 8.0; v100: 7.0; 2080ti: 7.5; titan xp: 6.1
-# module purge
-# module load cuda/11.3.1
-# module load gcc/7.5.0
+export TORCH_CUDA_ARCH_LIST="6.1;6.2;7.0;7.5;8.0"   # a100: 8.0; v100: 7.0; 2080ti: 7.5; titan xp: 6.1
+module purge
+module load cuda/11.1.1
+module load gcc/7.5.0
 
 # download openpoints
 # git submodule add git@github.com:guochengqian/openpoints.git

@@ -244,157 +244,167 @@ def main(gpu, cfg):
             train_loader.sampler.set_epoch(epoch)
         if hasattr(train_loader.dataset, 'epoch'):  # some dataset sets the dataset length as a fixed steps.
             train_loader.dataset.epoch = epoch - 1
-        train_loss, train_miou, train_macc, train_oa, _, _, total_iter = \
-            train_one_epoch(model, train_loader, criterion, optimizer, scheduler, scaler, epoch, total_iter, cfg)
+        
+        total_iter = train_one_epoch(model, train_loader, criterion, optimizer, scheduler, scaler, epoch, total_iter, cfg)
 
-        is_best = False
-        if epoch % cfg.val_freq == 0:
-            val_miou, val_macc, val_oa, val_ious, val_accs = validate_fn(model, val_loader, cfg, epoch=epoch, total_iter=total_iter)
-            if val_miou > best_val:
-                is_best = True
-                best_val = val_miou
-                macc_when_best = val_macc
-                oa_when_best = val_oa
-                ious_when_best = val_ious
-                best_epoch = epoch
-                with np.printoptions(precision=2, suppress=True):
-                    logging.info(
-                        f'Find a better ckpt @E{epoch}, val_miou {val_miou:.2f} val_macc {macc_when_best:.2f}, val_oa {oa_when_best:.2f}'
-                        f'\nmious: {val_ious}')
+        # is_best = False
+        # if epoch % cfg.val_freq == 0:
+        #     val_miou, val_macc, val_oa, val_ious, val_accs = validate_fn(model, val_loader, cfg, epoch=epoch, total_iter=total_iter)
+        #     if val_miou > best_val:
+        #         is_best = True
+        #         best_val = val_miou
+        #         macc_when_best = val_macc
+        #         oa_when_best = val_oa
+        #         ious_when_best = val_ious
+        #         best_epoch = epoch
+        #         with np.printoptions(precision=2, suppress=True):
+        #             logging.info(
+        #                 f'Find a better ckpt @E{epoch}, val_miou {val_miou:.2f} val_macc {macc_when_best:.2f}, val_oa {oa_when_best:.2f}'
+        #                 f'\nmious: {val_ious}')
 
-        lr = optimizer.param_groups[0]['lr']
-        logging.info(f'Epoch {epoch} LR {lr:.6f} '
-                     f'train_miou {train_miou:.2f}, val_miou {val_miou:.2f}, best val miou {best_val:.2f}')
-        if writer is not None:
-            writer.add_scalar('best_val', best_val, epoch)
-            writer.add_scalar('val_miou', val_miou, epoch)
-            writer.add_scalar('macc_when_best', macc_when_best, epoch)
-            writer.add_scalar('oa_when_best', oa_when_best, epoch)
-            writer.add_scalar('val_macc', val_macc, epoch)
-            writer.add_scalar('val_oa', val_oa, epoch)
-            writer.add_scalar('train_loss', train_loss, epoch)
-            writer.add_scalar('train_miou', train_miou, epoch)
-            writer.add_scalar('train_macc', train_macc, epoch)
-            writer.add_scalar('lr', lr, epoch)
+    #     lr = optimizer.param_groups[0]['lr']
+    #     logging.info(f'Epoch {epoch} LR {lr:.6f} '
+    #                  f'train_miou {train_miou:.2f}, val_miou {val_miou:.2f}, best val miou {best_val:.2f}')
+    #     if writer is not None:
+    #         writer.add_scalar('best_val', best_val, epoch)
+    #         writer.add_scalar('val_miou', val_miou, epoch)
+    #         writer.add_scalar('macc_when_best', macc_when_best, epoch)
+    #         writer.add_scalar('oa_when_best', oa_when_best, epoch)
+    #         writer.add_scalar('val_macc', val_macc, epoch)
+    #         writer.add_scalar('val_oa', val_oa, epoch)
+    #         writer.add_scalar('train_loss', train_loss, epoch)
+    #         writer.add_scalar('train_miou', train_miou, epoch)
+    #         writer.add_scalar('train_macc', train_macc, epoch)
+    #         writer.add_scalar('lr', lr, epoch)
 
-        if cfg.sched_on_epoch:
-            scheduler.step(epoch)
-        if cfg.rank == 0:
-            save_checkpoint(cfg, model, epoch, optimizer, scheduler,
-                            additioanl_dict={'best_val': best_val},
-                            is_best=is_best
-                            )
-            is_best = False
-    # do not save file to wandb to save wandb space
+    #     if cfg.sched_on_epoch:
+    #         scheduler.step(epoch)
+    #     if cfg.rank == 0:
+    #         save_checkpoint(cfg, model, epoch, optimizer, scheduler,
+    #                         additioanl_dict={'best_val': best_val},
+    #                         is_best=is_best
+    #                         )
+    #         is_best = False
+    # # do not save file to wandb to save wandb space
+    # # if writer is not None:
+    # #     Wandb.add_file(os.path.join(cfg.ckpt_dir, f'{cfg.run_name}_ckpt_best.pth'))
+    # # Wandb.add_file(os.path.join(cfg.ckpt_dir, f'{cfg.logname}_ckpt_latest.pth'))
+
+    # # validate
+    # with np.printoptions(precision=2, suppress=True):
+    #     logging.info(
+    #         f'Best ckpt @E{best_epoch},  val_oa {oa_when_best:.2f}, val_macc {macc_when_best:.2f}, val_miou {best_val:.2f}, '
+    #         f'\niou per cls is: {ious_when_best}')
+
+    # if cfg.world_size < 2:  # do not support multi gpu testing
+    #     # test
+    #     load_checkpoint(model, pretrained_path=os.path.join(cfg.ckpt_dir, f'{cfg.run_name}_ckpt_best.pth'))
+    #     cfg.csv_path = os.path.join(cfg.run_dir, cfg.run_name + f'.csv')
+    #     if 'sphere' in cfg.dataset.common.NAME.lower():
+    #         # TODO: 
+    #         test_miou, test_macc, test_oa, test_ious, test_accs = validate_sphere(model, val_loader, cfg, epoch=epoch)
+    #     else:
+    #         data_list = generate_data_list(cfg)
+    #         test_miou, test_macc, test_oa, test_ious, test_accs, _ = test(model, data_list, cfg)
+    #     with np.printoptions(precision=2, suppress=True):
+    #         logging.info(
+    #             f'Best ckpt @E{best_epoch},  test_oa {test_oa:.2f}, test_macc {test_macc:.2f}, test_miou {test_miou:.2f}, '
+    #             f'\niou per cls is: {test_ious}')
+    #     if writer is not None:
+    #         writer.add_scalar('test_miou', test_miou, epoch)
+    #         writer.add_scalar('test_macc', test_macc, epoch)
+    #         writer.add_scalar('test_oa', test_oa, epoch)
+    #     write_to_csv(test_oa, test_macc, test_miou, test_ious, best_epoch, cfg, write_header=True)
+    #     logging.info(f'save results in {cfg.csv_path}')
+    #     if cfg.use_voting:
+    #         load_checkpoint(model, pretrained_path=os.path.join(cfg.ckpt_dir, f'{cfg.run_name}_ckpt_best.pth'))
+    #         set_random_seed(cfg.seed)
+    #         val_miou, val_macc, val_oa, val_ious, val_accs = validate_fn(model, val_loader, cfg, num_votes=20,
+    #                                                                      data_transform=data_transform, epoch=epoch)
+    #         if writer is not None:
+    #             writer.add_scalar('val_miou20', val_miou, cfg.epochs + 50)
+
+    #         ious_table = [f'{item:.2f}' for item in val_ious]
+    #         data = [cfg.cfg_basename, 'True', f'{val_oa:.2f}', f'{val_macc:.2f}', f'{val_miou:.2f}'] + ious_table + [
+    #             str(best_epoch), cfg.run_dir]
+    #         with open(cfg.csv_path, 'w', encoding='UT8') as f:
+    #             writer = csv.writer(f)
+    #             writer.writerow(data)
+    # else:
+    #     logging.warning('Testing using multiple GPUs is not allowed for now. Running testing after this training is required.')
     # if writer is not None:
-    #     Wandb.add_file(os.path.join(cfg.ckpt_dir, f'{cfg.run_name}_ckpt_best.pth'))
-    # Wandb.add_file(os.path.join(cfg.ckpt_dir, f'{cfg.logname}_ckpt_latest.pth'))
-
-    # validate
-    with np.printoptions(precision=2, suppress=True):
-        logging.info(
-            f'Best ckpt @E{best_epoch},  val_oa {oa_when_best:.2f}, val_macc {macc_when_best:.2f}, val_miou {best_val:.2f}, '
-            f'\niou per cls is: {ious_when_best}')
-
-    if cfg.world_size < 2:  # do not support multi gpu testing
-        # test
-        load_checkpoint(model, pretrained_path=os.path.join(cfg.ckpt_dir, f'{cfg.run_name}_ckpt_best.pth'))
-        cfg.csv_path = os.path.join(cfg.run_dir, cfg.run_name + f'.csv')
-        if 'sphere' in cfg.dataset.common.NAME.lower():
-            # TODO: 
-            test_miou, test_macc, test_oa, test_ious, test_accs = validate_sphere(model, val_loader, cfg, epoch=epoch)
-        else:
-            data_list = generate_data_list(cfg)
-            test_miou, test_macc, test_oa, test_ious, test_accs, _ = test(model, data_list, cfg)
-        with np.printoptions(precision=2, suppress=True):
-            logging.info(
-                f'Best ckpt @E{best_epoch},  test_oa {test_oa:.2f}, test_macc {test_macc:.2f}, test_miou {test_miou:.2f}, '
-                f'\niou per cls is: {test_ious}')
-        if writer is not None:
-            writer.add_scalar('test_miou', test_miou, epoch)
-            writer.add_scalar('test_macc', test_macc, epoch)
-            writer.add_scalar('test_oa', test_oa, epoch)
-        write_to_csv(test_oa, test_macc, test_miou, test_ious, best_epoch, cfg, write_header=True)
-        logging.info(f'save results in {cfg.csv_path}')
-        if cfg.use_voting:
-            load_checkpoint(model, pretrained_path=os.path.join(cfg.ckpt_dir, f'{cfg.run_name}_ckpt_best.pth'))
-            set_random_seed(cfg.seed)
-            val_miou, val_macc, val_oa, val_ious, val_accs = validate_fn(model, val_loader, cfg, num_votes=20,
-                                                                         data_transform=data_transform, epoch=epoch)
-            if writer is not None:
-                writer.add_scalar('val_miou20', val_miou, cfg.epochs + 50)
-
-            ious_table = [f'{item:.2f}' for item in val_ious]
-            data = [cfg.cfg_basename, 'True', f'{val_oa:.2f}', f'{val_macc:.2f}', f'{val_miou:.2f}'] + ious_table + [
-                str(best_epoch), cfg.run_dir]
-            with open(cfg.csv_path, 'w', encoding='UT8') as f:
-                writer = csv.writer(f)
-                writer.writerow(data)
-    else:
-        logging.warning('Testing using multiple GPUs is not allowed for now. Running testing after this training is required.')
-    if writer is not None:
-        writer.close()
-    # dist.destroy_process_group() # comment this line due to https://github.com/guochengqian/PointNeXt/issues/95
-    wandb.finish(exit_code=True)
+    #     writer.close()
+    # # dist.destroy_process_group() # comment this line due to https://github.com/guochengqian/PointNeXt/issues/95
+    # wandb.finish(exit_code=True)
 
 
 def train_one_epoch(model, train_loader, criterion, optimizer, scheduler, scaler, epoch, total_iter, cfg):
     loss_meter = AverageMeter()
     cm = ConfusionMatrix(num_classes=cfg.num_classes, ignore_index=cfg.ignore_index)
     model.train()  # set model to training mode
-    pbar = tqdm(enumerate(train_loader), total=train_loader.__len__())
+    # pbar = tqdm(enumerate(train_loader), total=train_loader.__len__())
+    # pbar = tqdm(torch.range(train_loader), total=train_loader.__len__())
     num_iter = 0
-    for idx, data in pbar:
-        keys = data.keys() if callable(data.keys) else data.keys
-        for key in keys:
-            data[key] = data[key].cuda(non_blocking=True)
+    for idx in range(0, 250): 
+        # keys = data.keys() if callable(data.keys) else data.keys
+        # for key in keys:
+        #     data[key] = data[key].cuda(non_blocking=True)
         num_iter += 1
-        target = data['y'].squeeze(-1)
+        total_iter += 1 
+        # target = data['y'].squeeze(-1)
         """ debug
         from openpoints.dataset import vis_points
         vis_points(data['pos'].cpu().numpy()[0], labels=data['y'].cpu().numpy()[0])
         vis_points(data['pos'].cpu().numpy()[0], data['x'][0, :3, :].transpose(1, 0))
         end of debug """
-        data['x'] = get_features_by_keys(data, cfg.feature_keys)
-        data['epoch'] = epoch
-        total_iter += 1 
-        data['iter'] = total_iter 
-        with torch.cuda.amp.autocast(enabled=cfg.use_amp):
-            logits = model(data)
-            loss = criterion(logits, target) if 'mask' not in cfg.criterion_args.NAME.lower() \
-                else criterion(logits, target, data['mask'])
+        # data['x'] = get_features_by_keys(data, cfg.feature_keys)
+        # data['epoch'] = epoch
+        # data['iter'] = total_iter 
+        # breakpoint()
+        alpha, lambd = model.encoder.get_alpha_lambd(
+                        epoch, total_iter, 
+                        option=model.encoder.option, 
+                        start_epoch=model.encoder.start_epoch, end_epoch=model.encoder.end_epoch, 
+                        freq=model.encoder.freq, freeze_ratio=model.encoder.freeze_ratio, 
+                        use_iter=model.encoder.use_step, 
+                        num_training_steps_per_epoch=model.encoder.num_training_steps_per_epoch, 
+                        stop_epoch=model.encoder.stop_epoch
+                        ) 
+        print(f'during rev in training: alpha: {alpha}, lambda: {lambd}, iter: {total_iter}') # TODO: DEBUG
+    #     with torch.cuda.amp.autocast(enabled=cfg.use_amp):
+    #         logits = model(data)
+    #         loss = criterion(logits, target) if 'mask' not in cfg.criterion_args.NAME.lower() \
+    #             else criterion(logits, target, data['mask'])
 
-        if cfg.use_amp:
-            scaler.scale(loss).backward()
-        else:
-            loss.backward()
-        # optimize
-        if num_iter == cfg.step_per_update:
-            if cfg.get('grad_norm_clip') is not None and cfg.grad_norm_clip > 0.:
-                torch.nn.utils.clip_grad_norm_(model.parameters(), cfg.grad_norm_clip, norm_type=2)
-            num_iter = 0
+    #     if cfg.use_amp:
+    #         scaler.scale(loss).backward()
+    #     else:
+    #         loss.backward()
+    #     # optimize
+    #     if num_iter == cfg.step_per_update:
+    #         if cfg.get('grad_norm_clip') is not None and cfg.grad_norm_clip > 0.:
+    #             torch.nn.utils.clip_grad_norm_(model.parameters(), cfg.grad_norm_clip, norm_type=2)
+    #         num_iter = 0
 
-            if cfg.use_amp:
-                scaler.step(optimizer)
-                scaler.update()
-            else:
-                optimizer.step()
+    #         if cfg.use_amp:
+    #             scaler.step(optimizer)
+    #             scaler.update()
+    #         else:
+    #             optimizer.step()
 
-            optimizer.zero_grad()
-            if not cfg.sched_on_epoch:
-                scheduler.step(epoch)
-            # mem = torch.cuda.max_memory_allocated() / 1024. / 1024.
-            # print(f"Memory after backward is {mem}")
-            
-        # update confusion matrix
-        cm.update(logits.argmax(dim=1), target)
-        loss_meter.update(loss.item())
+    #         optimizer.zero_grad()
+    #         if not cfg.sched_on_epoch:
+    #             scheduler.step(epoch)
 
-        if idx % cfg.print_freq:
-            pbar.set_description(f"Train Epoch [{epoch}/{cfg.epochs}] "
-                                 f"Loss {loss_meter.val:.3f} Acc {cm.overall_accuray:.2f}")
-    miou, macc, oa, ious, accs = cm.all_metrics()
-    return loss_meter.avg, miou, macc, oa, ious, accs, total_iter
+    #     # update confusion matrix
+    #     cm.update(logits.argmax(dim=1), target)
+    #     loss_meter.update(loss.item())
+
+    #     if idx % cfg.print_freq:
+    #         pbar.set_description(f"Train Epoch [{epoch}/{cfg.epochs}] "
+    #                              f"Loss {loss_meter.val:.3f} Acc {cm.overall_accuray:.2f}")
+    # miou, macc, oa, ious, accs = cm.all_metrics()
+    return total_iter
 
 
 @torch.no_grad()
