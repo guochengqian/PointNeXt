@@ -1,0 +1,1079 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Library for PointNeXt, ASSANet, Pix4Point, and other point-based methods">
+      
+      
+      
+      
+        <link rel="prev" href="../projects/pointvector/">
+      
+      
+        <link rel="next" href="../changes/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.14">
+    
+    
+      
+        <title>Model Zoo (Pretrained Models) - OpenPoints</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fad675c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#model-zoo-pretrained-models" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="OpenPoints" class="md-header__button md-logo" aria-label="OpenPoints" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OpenPoints
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Model Zoo (Pretrained Models)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/guochengqian/pointnext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    guochengqian/pointnext
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="OpenPoints" class="md-nav__button md-logo" aria-label="OpenPoints" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    OpenPoints
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/guochengqian/pointnext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    guochengqian/pointnext
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Examples
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/scanobjectnn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3D object classification on ScanObjectNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/modelnet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Point cloud classification on ModelNet40
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/shapenetpart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part Segmentation on ShapeNetPart
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/s3dis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Indoor Point cloud Segmentation on S3DIS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/scannet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Large-Scale 3D Segmentation on ScanNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Projects
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/pix4point/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pix4point
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/pointnext/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pointnext
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/pointvector/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pointvector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Model Zoo (Pretrained Models)
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Model Zoo (Pretrained Models)
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scanobjectnn-hardest-variant-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      ScanObjectNN (Hardest variant) Classification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s3ids-6-fold-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      S3IDS (6-fold) Segmentation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s3dis-area-5-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      S3DIS (Area 5) Segmentation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shapenetpart-part-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      ShapeNetpart Part Segmentation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelnet40-classificaiton" class="md-nav__link">
+    <span class="md-ellipsis">
+      ModelNet40 Classificaiton
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Change Logs & TODOs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scanobjectnn-hardest-variant-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      ScanObjectNN (Hardest variant) Classification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s3ids-6-fold-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      S3IDS (6-fold) Segmentation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s3dis-area-5-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      S3DIS (Area 5) Segmentation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shapenetpart-part-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      ShapeNetpart Part Segmentation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelnet40-classificaiton" class="md-nav__link">
+    <span class="md-ellipsis">
+      ModelNet40 Classificaiton
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="model-zoo-pretrained-models">Model Zoo (Pretrained Models)</h1>
+<p>We provide the <strong>training logs &amp; pretrained models</strong> in column <code>our released</code>  <em>trained with the improved training strategies proposed by our PointNeXt</em> through Google Drive. </p>
+<p><em>TP</em>: Throughput (instance per second) measured using an NVIDIA Tesla V100 32GB GPU and a 32 core Intel Xeon @ 2.80GHz CPU.</p>
+<h3 id="scanobjectnn-hardest-variant-classification">ScanObjectNN (Hardest variant) Classification</h3>
+<p>Throughput is measured with 128 x 1024 points. </p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">name</th>
+<th style="text-align: center;">OA/mAcc (Original)</th>
+<th style="text-align: center;">OA/mAcc (our released)</th>
+<th style="text-align: center;">#params</th>
+<th style="text-align: center;">FLOPs</th>
+<th style="text-align: center;">Throughput (ins./sec.)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">PointNet</td>
+<td style="text-align: center;">68.2 / 63.4</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1F9sReTX9MC1RAEHZaSh6o_tn9hgQFT95?usp=sharing">75.2 / 71.4</a></td>
+<td style="text-align: center;">3.5M</td>
+<td style="text-align: center;">1.0G</td>
+<td style="text-align: center;">4212</td>
+</tr>
+<tr>
+<td style="text-align: center;">DGCNN</td>
+<td style="text-align: center;">78.1 / 73.6</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1KWfvYPrJNdOaMOxTQnwI0eXTspKHCfYQ?usp=sharing">86.1 / 84.3</a></td>
+<td style="text-align: center;">1.8M</td>
+<td style="text-align: center;">4.8G</td>
+<td style="text-align: center;">402</td>
+</tr>
+<tr>
+<td style="text-align: center;">PointMLP</td>
+<td style="text-align: center;">85.4±1.3 / 83.9±1.5</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1Cy4tC5YmlbiDATWEW3qLLNxnBx2-XMqa?usp=sharing">87.7 / 86.4</a></td>
+<td style="text-align: center;">13.2M</td>
+<td style="text-align: center;">31.4G</td>
+<td style="text-align: center;">191</td>
+</tr>
+<tr>
+<td style="text-align: center;">PointNet++</td>
+<td style="text-align: center;">77.9 / 75.4</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1T7uvQW4cLp65DnaEWH9eREH4XKTKnmks?usp=sharing">86.2 / 84.4</a></td>
+<td style="text-align: center;">1.5M</td>
+<td style="text-align: center;">1.7G</td>
+<td style="text-align: center;">1872</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointNeXt-S</strong></td>
+<td style="text-align: center;">87.7±0.4 / 85.8±0.6</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1A584C9x5uAqppbjNNiVqlA_7uOOOlEII?usp=sharing">88.20 / 86.84</a></td>
+<td style="text-align: center;">1.4M</td>
+<td style="text-align: center;">1.64G</td>
+<td style="text-align: center;">2040</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Pix4Point</strong></td>
+<td style="text-align: center;">87.9 / 86.7</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1VyAWEYZF-nXIp0zIuCqnpFYwVmJjHihR?usp=share_link">87.9 / 86.7 </a></td>
+<td style="text-align: center;">22.6M</td>
+<td style="text-align: center;">28.0G</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointVector</strong></td>
+<td style="text-align: center;">87.8±0.4 / 86.2±0.5</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1Bxbf7MO_uK-28IWYRe1pWmILenDeL7Xk?usp=sharing">88.17 / 86.69</a></td>
+<td style="text-align: center;">1.55</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">901</td>
+</tr>
+</tbody>
+</table>
+<h3 id="s3ids-6-fold-segmentation">S3IDS (6-fold) Segmentation</h3>
+<p>Throughput (TP) is measured with 16 x 15000 points.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">name</th>
+<th style="text-align: center;">mIoU/OA/mAcc (Original)</th>
+<th style="text-align: center;">mIoU/OA/mAcc (our released)</th>
+<th style="text-align: center;">#params</th>
+<th style="text-align: center;">FLOPs</th>
+<th style="text-align: center;">TP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">PointNet++</td>
+<td style="text-align: center;">54.5 / 81.0 / 67.1</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1UOM2H9ax_zCM03wl_ZEc3bWtnZJcrggu?usp=sharing">68.1 / 87.6 / 78.4</a></td>
+<td style="text-align: center;">1.0M</td>
+<td style="text-align: center;">7.2G</td>
+<td style="text-align: center;">186</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointNeXt-S</strong></td>
+<td style="text-align: center;">68.0 / 87.4 / 77.3</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1KTe82Y-I91HDO6ombWDjHRkkdO_F32wx?usp=sharing">68.0 / 87.4 / 77.3</a></td>
+<td style="text-align: center;">0.8M</td>
+<td style="text-align: center;">3.6G</td>
+<td style="text-align: center;">227</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointNeXt-B</strong></td>
+<td style="text-align: center;">71.5 / 88.8 / 80.2</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1UJj-tvexA74DYSFpNYdPRmMznJ1-tjTO?usp=sharing">71.5 / 88.8 / 80.2</a></td>
+<td style="text-align: center;">3.8M</td>
+<td style="text-align: center;">8.8G</td>
+<td style="text-align: center;">158</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointNeXt-L</strong></td>
+<td style="text-align: center;">73.9 / 89.8 / 82.2</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1VhL1klLDgRVx1O1PN4XN64S3BYkRvmkV?usp=sharing">73.9 / 89.8 / 82.2</a></td>
+<td style="text-align: center;">7.1M</td>
+<td style="text-align: center;">15.2G</td>
+<td style="text-align: center;">115</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointNeXt-XL</strong></td>
+<td style="text-align: center;">74.9 / 90.3 / 83.0</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/19n7jmB7NNKiIL_jb3Wq3hY-CQDx23q7u?usp=sharing">74.9 / 90.3 / 83.0</a></td>
+<td style="text-align: center;">41.6M</td>
+<td style="text-align: center;">84.8G</td>
+<td style="text-align: center;">46</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointVector-L</strong></td>
+<td style="text-align: center;">77.4 / 91.4 / 85.5</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1zpkUwawIbKf9mFsyKbFoAYere0AiCFmJ?usp=sharing">77.4 / 91.4 / 85.5</a></td>
+<td style="text-align: center;">4.2M</td>
+<td style="text-align: center;">10.7G</td>
+<td style="text-align: center;">98</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointVector-XL</strong></td>
+<td style="text-align: center;">78.4 / 91.9 / 86.1</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1-iIrZtE_CNaUDPPm1MMkLhmsYtb3Fdf0?usp=sharing">78.4 / 91.9 / 86.1</a></td>
+<td style="text-align: center;">24.1M</td>
+<td style="text-align: center;">58.5G</td>
+<td style="text-align: center;">40</td>
+</tr>
+</tbody>
+</table>
+<h3 id="s3dis-area-5-segmentation">S3DIS (Area 5) Segmentation</h3>
+<p>Throughput (TP) is measured with 16 x 15000 points.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">name</th>
+<th style="text-align: center;">mIoU/OA/mAcc (Original)</th>
+<th style="text-align: center;">mIoU/OA/mAcc (our released)</th>
+<th style="text-align: center;">#params</th>
+<th style="text-align: center;">FLOPs</th>
+<th style="text-align: center;">TP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">PointNet++</td>
+<td style="text-align: center;">53.5 / 83.0 / -</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1NCy1Av1-TSs_46ngOk181A3BUhc8hpWV?usp=sharing">63.6 / 88.3 / 70.2</a></td>
+<td style="text-align: center;">1.0M</td>
+<td style="text-align: center;">7.2G</td>
+<td style="text-align: center;">186</td>
+</tr>
+<tr>
+<td style="text-align: center;">ASSANet</td>
+<td style="text-align: center;">63.0 / - /-</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1a-2yNP_JvOgKPTLBTYXP5NtUmspc1P-c?usp=sharing">65.8 / 88.9 / 72.2</a></td>
+<td style="text-align: center;">2.4M</td>
+<td style="text-align: center;">2.5G</td>
+<td style="text-align: center;">228</td>
+</tr>
+<tr>
+<td style="text-align: center;">ASSANet-L</td>
+<td style="text-align: center;">66.8 / - / -</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1FinOKtFEigsbgjsLybhpZr2xkESLIDhf?usp=sharing">68.0 / 89.7/ 74.3</a></td>
+<td style="text-align: center;">115.6M</td>
+<td style="text-align: center;">36.2G</td>
+<td style="text-align: center;">81</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointNeXt-S</strong></td>
+<td style="text-align: center;">63.4±0.8 / 87.9±0.3 / 70.0±0.7</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1UG8hh_CrUf-OhrYbcDd0zvDtoInrGP1u?usp=sharing">64.2 / 88.2 / 70.7</a></td>
+<td style="text-align: center;">0.8M</td>
+<td style="text-align: center;">3.6G</td>
+<td style="text-align: center;">227</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointNeXt-B</strong></td>
+<td style="text-align: center;">67.3±0.2 / 89.4±0.1 / 73.7±0.6</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/166g_4vaCrS6CSmp3FwAWxl8N8ZmMuylw?usp=sharing">67.5 / 89.4 / 73.9</a></td>
+<td style="text-align: center;">3.8M</td>
+<td style="text-align: center;">8.8G</td>
+<td style="text-align: center;">158</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointNeXt-L</strong></td>
+<td style="text-align: center;">69.0±0.5 / 90.0±0.1 / 75.3±0.8</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1g4qE6g10zoZY5y6LPDQ5g12DvSLbnCnj?usp=sharing">69.3 / 90.1 / 75.7</a></td>
+<td style="text-align: center;">7.1M</td>
+<td style="text-align: center;">15.2G</td>
+<td style="text-align: center;">115</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointNeXt-XL</strong></td>
+<td style="text-align: center;">70.5±0.3 / 90.6±0.2 / 76.8±0.7</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1rng7YmfzzIGtXREn7jW0vVFmSSakLQs4?usp=sharing">71.1 / 91.0 / 77.2</a></td>
+<td style="text-align: center;">41.6M</td>
+<td style="text-align: center;">84.8G</td>
+<td style="text-align: center;">46</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Pix4Point</strong></td>
+<td style="text-align: center;">69.6 / 89.9 / 75.2</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1WaJwwWRmv_XtApYKuslPw-hkK0EHvnaE?usp=share_link">69.6 / 89.9 / 75.2</a></td>
+<td style="text-align: center;">23.7M</td>
+<td style="text-align: center;">190G</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointVector-L</strong></td>
+<td style="text-align: center;">71.2 / 90.8 / 77.3</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1w3krP8p_OGpWETwK4ynA3XM4QShKloQW?usp=sharing">71.2 / 90.8 / 77.3</a></td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointVector-XL</strong></td>
+<td style="text-align: center;">72.3 / 91.0 / 78.1</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1qaojo6G8S1L1UTl8ZBVIl-qYXwm5od2U?usp=sharing">72.61 / 91.59 / 78.3</a></td>
+<td style="text-align: center;">24.1M</td>
+<td style="text-align: center;">58.5G</td>
+<td style="text-align: center;">40</td>
+</tr>
+</tbody>
+</table>
+<h3 id="shapenetpart-part-segmentation">ShapeNetpart Part Segmentation</h3>
+<p>Throughput (TP) is measured with 64*2048 points.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">name</th>
+<th style="text-align: center;">Ins. mIoU / Cat. mIoU (Original)</th>
+<th style="text-align: center;">Ins. mIoU / Cat. mIoU (our released)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">PointNet++</td>
+<td style="text-align: center;">85.1/81.9</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointNeXt-S</strong></td>
+<td style="text-align: center;">86.7±0.0 / 84.4±0.2</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/u/1/folders/1SMmQ7EOMXJuBIfjk2T93Pan3T2WaG9Pj?usp=sharing">86.7 / 84.2</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointNeXt-S (C=64)</strong></td>
+<td style="text-align: center;">86.9±0.0 / 84.8±0.5</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/u/1/folders/1qGue_R313Ej9xa_VaQGrFHiHoVdD8e8A?usp=sharing">86.9 / 85.2</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointNeXt-S (C=160)</strong></td>
+<td style="text-align: center;">87.0±0.1 / 85.2±0.1</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/u/1/folders/1hYxwuAMXo2HRtqEYe0_frjcVD8JDecb6?usp=sharing">87.1 / 85.4</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Pix4Point</strong></td>
+<td style="text-align: center;">86.8 / 85.6</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1cHW8phXBB-eOohZ04iUpbo1ulAE2qQkQ?usp=share_link">86.8 / 85.6</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointVector-S (C=64)</strong></td>
+<td style="text-align: center;">86.9 / -</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1gu7FUoI6HOaWbWk9VttcR469Fn98O7D_?usp=sharing">86.9 / 85.05</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="modelnet40-classificaiton">ModelNet40 Classificaiton</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">name</th>
+<th style="text-align: center;">OA/mAcc (Original)</th>
+<th style="text-align: center;">OA/mAcc (our released)</th>
+<th style="text-align: center;">#params</th>
+<th style="text-align: center;">FLOPs</th>
+<th style="text-align: center;">Throughput (ins./sec.)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">PointNet++</td>
+<td style="text-align: center;">91.9 / -</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1Re2_NCtZBKxIhtv755LlnHjz-FBPWjgW?usp=sharing">93.0 / 90.7</a></td>
+<td style="text-align: center;">1.5M</td>
+<td style="text-align: center;">1.7G</td>
+<td style="text-align: center;">1872</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointNeXt-S</strong> (C=64)</td>
+<td style="text-align: center;">93.7±0.3 / 90.9±0.5</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/14biOHuvH8b2F03ZozrWyF45tCmtsorYN?usp=sharing">94.0 / 91.1</a></td>
+<td style="text-align: center;">4.5M</td>
+<td style="text-align: center;">6.5G</td>
+<td style="text-align: center;">2033</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>PointVector-S</strong> (C=64)</td>
+<td style="text-align: center;">93.5±0.2 / 91.0±0.5</td>
+<td style="text-align: center;"><a href="https://drive.google.com/drive/folders/1I_Xv4o8GdQKaNeEcHTW6e0ZjchuxHjlT?usp=sharing">93.68 / 91.53</a></td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.cd18aaf1.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+      
+        <script src="../javascripts/tables.js"></script>
+      
+    
+  </body>
+</html>
