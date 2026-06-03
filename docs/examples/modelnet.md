@@ -14,11 +14,26 @@ CUDA_VISIBLE_DEVICES=0 python examples/classification/main.py --cfg cfgs/modelne
 
 ## Test
 
-test `PointNeXt-S (C=64)`
+The default `cfgs/modelnet40ply2048/pointnext-s.yaml` config uses PointNeXt-S with width 32. The released ModelNet40 model-zoo checkpoint is the C=64 variant, so testing that checkpoint requires `model.encoder_args.width=64`.
+
+Download the checkpoint with the helper after the HF mirror is published:
 
 ```bash
-CUDA_VISIBLE_DEVICES=0 python examples/classification/main.py --cfg cfgs/modelnet40ply2048/pointnext-s.yaml model.encoder_args.width=64 mode=test --pretrained_path /path/to/your/pretrained_model
+python tools/download_checkpoint.py modelnet40-pointnext-s-c64 --output-dir ./hf_cache
 ```
+
+Test `PointNeXt-S (C=64)`:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python examples/classification/main.py \
+  --cfg cfgs/modelnet40ply2048/pointnext-s.yaml \
+  model.encoder_args.width=64 \
+  mode=test \
+  --pretrained_path hf_cache/checkpoints/modelnet40/pointnext-s-c64.pth \
+  wandb.use_wandb=False
+```
+
+Expected released checkpoint result: about OA 94.0 / mAcc 91.1.
 
 ## Reference 
 ```

@@ -140,10 +140,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-<<<<<<< HEAD
-=======
 
 # Configuration from Wayne Mai
 wayne*
 semantic_kitti/shapenet/
->>>>>>> 3121fefbc3691185d8132fd86100353f2aa32a71

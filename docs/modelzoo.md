@@ -1,6 +1,13 @@
 # Model Zoo (Pretrained Models)
 
-We provide the **training logs & pretrained models** in column `our released`  *trained with the improved training strategies proposed by our PointNeXt* through Google Drive. 
+We provide the **training logs & pretrained models** in column `our released` *trained with the improved training strategies proposed by PointNeXt*. Existing public artifacts are linked through Google Drive. New release artifacts should also be mirrored on Hugging Face Hub with the layout, downloader, and checksum manifest described in [Checkpoints and Hugging Face release layout](checkpoints.md).
+
+Quick ModelNet40 checkpoint download after the HF mirror is published:
+
+```bash
+pip install pointnext-torch
+pointnext-download modelnet40-pointnext-s-c64 --output-dir ./hf_cache
+```
 
 *TP*: Throughput (instance per second) measured using an NVIDIA Tesla V100 32GB GPU and a 32 core Intel Xeon @ 2.80GHz CPU.
 

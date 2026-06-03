@@ -38,18 +38,36 @@ Welcome to [**OpenPoints**](https://github.com/guochengqian/openpoints) library.
 
 ## Install
 
+### Pip packages
+
+For Python import and checkpoint helper workflows:
+
+```bash
+pip install openpoints pointnext-torch
 ```
-git clone git@github.com:guochengqian/PointNeXt.git
+
+`openpoints` is the core library. `pointnext-torch` provides PointNeXt metadata and the `pointnext-download` checkpoint helper. These packages are importable without compiling CUDA extensions.
+
+### Source install for training/evaluation
+
+```bash
+git clone --recurse-submodules https://github.com/guochengqian/PointNeXt.git
 cd PointNeXt
+git submodule update --init --recursive
 source install.sh
 ```
-Note:  
 
-1) the `install.sh` requires CUDA 11.3; if another version of CUDA is used,  `install.sh` has to be modified accordingly; check your CUDA version by: `nvcc --version` before using the bash file;
+If SSH is configured, `git clone --recurse-submodules git@github.com:guochengqian/PointNeXt.git` is equivalent.
 
-2) you might need to read `install.sh` for a step-by-step installation if the bash file (`install.sh`) does not work for you by any chance;
+Note:
 
-3) for all experiments, we use wandb for online logging. Run `wandb --login` only at the first time in a new machine. Set `wandn.use_wandb=False` to use this function. Read the [official wandb documentation](https://docs.wandb.ai/quickstart) if needed.
+1) The original `install.sh` assumes CUDA 11.3-era PyTorch/CUDA settings. If another CUDA version is used, modify `install.sh` accordingly; check your CUDA version with `nvcc --version` before using the bash file.
+
+2) If the bash file does not work on your machine, read `install.sh` step by step and run the matching PyTorch/CUDA/operator build commands manually.
+
+3) PointNeXt benchmark training/evaluation uses custom CUDA/C++ ops from the `openpoints` submodule. CPU-only and PyPI-only installs are fine for import/package smoke tests, but full benchmark reproduction requires a CUDA GPU and source-built ops.
+
+4) For all experiments, we use wandb for online logging. Run `wandb --login` only the first time in a new machine. Set `wandb.use_wandb=False` to disable wandb. Read the [official wandb documentation](https://docs.wandb.ai/quickstart) if needed.
 
 
 ## General Usage 

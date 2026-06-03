@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pointnext-torch"
+version = "0.1.0"
+description = "PointNeXt release helpers, checkpoint download utilities, and metadata for pip-installed OpenPoints/PointNeXt users."
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+authors = [{ name = "Guocheng Qian" }]
+keywords = ["point cloud", "deep learning", "pytorch", "PointNeXt", "OpenPoints"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "openpoints>=0.1.0",
+  "huggingface_hub>=0.19",
+  "PyYAML>=5.4",
+]
+
+[project.optional-dependencies]
+dev = ["build>=1", "twine>=4", "pytest>=7"]
+docs = ["mkdocs-material", "mkdocs-awesome-pages-plugin", "mdx_truly_sane_lists"]
+
+[project.urls]
+Homepage = "https://github.com/guochengqian/PointNeXt"
+Repository = "https://github.com/guochengqian/PointNeXt"
+Documentation = "https://guochengqian.github.io/PointNeXt/"
+Issues = "https://github.com/guochengqian/PointNeXt/issues"
+Checkpoints = "https://huggingface.co/guochengqian/pointnext"
+
+[project.scripts]
+pointnext-download = "pointnext_torch.cli:main"
+
+[tool.setuptools]
+packages = ["pointnext_torch"]
+include-package-data = true
+zip-safe = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
