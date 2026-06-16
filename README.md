@@ -68,15 +68,35 @@ In the PointNeXt project, we propose a new and flexible codebase for point-based
 ---
 
 ## Installation
-We provide a simple bash file to install the environment:
 
+### Pip packages
+
+The Python libraries are released as installable packages:
+
+```bash
+pip install openpoints pointnext-torch
 ```
-git clone --recurse-submodules git@github.com:guochengqian/PointNeXt.git
+
+`openpoints` provides the Python library. `pointnext-torch` provides PointNeXt release metadata and checkpoint download helpers, for example:
+
+```bash
+pointnext-download --list
+pointnext-download modelnet40-pointnext-s-c64 --output-dir ./hf_cache
+```
+
+The PyPI packages are importable without compiling CUDA extensions. Full training/evaluation still requires the custom CUDA/C++ ops, so use a source checkout for benchmark reproduction.
+
+### Source install for training/evaluation
+
+```bash
+git clone --recurse-submodules https://github.com/guochengqian/PointNeXt.git
 cd PointNeXt
+git submodule update --init --recursive
 source update.sh
 source install.sh
 ```
-Cuda-11.3 is required. Modify the `install.sh` if a different cuda version is used. See [Install](docs/index.md) for detail. 
+
+If SSH is configured, `git@github.com:guochengqian/PointNeXt.git` also works. CUDA 11.3 was used for the original release. Modify `install.sh` if a different CUDA/PyTorch version is used. See [Install](docs/index.md), [FAQ](docs/faq.md), and [Checkpoints](docs/checkpoints.md) for details.
 
 
 
@@ -95,7 +115,7 @@ CUDA_VISIBLE_DEVICES=$GPUs python examples/$task_folder/main.py --cfg $cfg $kwar
 
 
 ## Model Zoo (pretrained weights)
-see [Model Zoo](https://guochengqian.github.io/PointNeXt/modelzoo/). 
+See [Model Zoo](https://guochengqian.github.io/PointNeXt/modelzoo/) and [checkpoint download docs](docs/checkpoints.md). The recommended new release path hosts large checkpoints and checksum manifests on Hugging Face Hub, while GitHub Releases/PyPI host source and Python packages.
 
 ### Visualization
 More examples are available in the [paper](https://arxiv.org/abs/2206.04670). 

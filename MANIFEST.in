@@ -1,0 +1,20 @@
+include LICENSE
+include README.md
+include requirements.txt
+include install.sh
+include update.sh
+recursive-include cfgs *.yaml
+recursive-include docs *.md *.png *.jpg *.jpeg
+recursive-include examples *.py
+recursive-include tools *.py
+recursive-include notebooks *.ipynb
+recursive-include metadata *.md *.sha256
+prune openpoints/.git
+prune .git
+prune data
+prune log
+prune logs
+prune wandb
+prune dist
+prune build
+prune *.egg-info

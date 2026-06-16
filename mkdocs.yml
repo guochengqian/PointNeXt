@@ -11,6 +11,10 @@ nav:
     - examples/s3dis.md
     - examples/scannet.md
   - ... | projects/*.md
+  - Checkpoints: checkpoints.md
+  - Free GPU Colab: free_gpu_colab.md
+  - FAQ: faq.md
+  - Release checklist: release.md
   - modelzoo.md
   - changes.md
 theme:
