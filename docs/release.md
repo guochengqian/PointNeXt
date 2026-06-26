@@ -5,7 +5,7 @@
 OpenPoints and PointNeXt use separate PyPI distributions:
 
 - `openpoints`: the main Python library with models, datasets, layers, transforms, and training utilities.
-- `pointnext-torch`: PointNeXt release helpers, checkpoint downloader, and metadata.
+- `pointnext_official`: PointNeXt release helpers, checkpoint downloader, and metadata.
 
 Build and check packages locally before uploading:
 
@@ -16,9 +16,9 @@ python -m venv /tmp/pointnext-wheel-test
 /tmp/pointnext-wheel-test/bin/python -m pip install -U pip
 /tmp/pointnext-wheel-test/bin/python -m pip install dist/*.whl
 /tmp/pointnext-wheel-test/bin/python - <<'PY'
-import pointnext_torch
-from pointnext_torch.checkpoints import KNOWN_CHECKPOINTS
-print(pointnext_torch.__version__)
+import pointnext_official
+from pointnext_official.checkpoints import KNOWN_CHECKPOINTS
+print(pointnext_official.__version__)
 print(sorted(KNOWN_CHECKPOINTS))
 PY
 ```

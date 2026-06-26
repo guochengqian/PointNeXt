@@ -1,4 +1,4 @@
-"""Command-line helpers for the pointnext-torch package."""
+"""Command-line helpers for the pointnext_official package."""
 
 from __future__ import annotations
 

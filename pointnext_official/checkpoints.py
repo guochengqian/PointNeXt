@@ -138,7 +138,7 @@ def download_checkpoint(
     except ImportError as exc:
         raise ImportError(
             "Install checkpoint support with `pip install huggingface_hub` or "
-            "`pip install pointnext-torch`."
+            "`pip install pointnext_official`."
         ) from exc
 
     spec = KNOWN_CHECKPOINTS.get(key_or_filename)

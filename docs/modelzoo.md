@@ -5,7 +5,7 @@ We provide the **training logs & pretrained models** in column `our released` *t
 Quick ModelNet40 checkpoint download after the HF mirror is published:
 
 ```bash
-pip install pointnext-torch
+pip install pointnext_official
 pointnext-download modelnet40-pointnext-s-c64 --output-dir ./hf_cache
 ```
 

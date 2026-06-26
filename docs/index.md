@@ -43,10 +43,10 @@ Welcome to [**OpenPoints**](https://github.com/guochengqian/openpoints) library.
 For Python import and checkpoint helper workflows:
 
 ```bash
-pip install openpoints pointnext-torch
+pip install pointnext_official
 ```
 
-`openpoints` is the core library. `pointnext-torch` provides PointNeXt metadata and the `pointnext-download` checkpoint helper. These packages are importable without compiling CUDA extensions.
+`pointnext_official` depends on `openpoints`, provides PointNeXt metadata, and installs the `pointnext-download` checkpoint helper. These packages are importable without compiling CUDA extensions.
 
 ### Source install for training/evaluation
 
