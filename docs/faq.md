@@ -24,7 +24,7 @@ pip install openpoints
 
 For training/evaluation, build the CUDA/C++ extensions from a source checkout.
 
-## Does `pip install openpoints pointnext-torch` include CUDA ops?
+## Does `pip install pointnext_official` include CUDA ops?
 
 No. The PyPI packages make the Python modules importable and provide metadata/checkpoint helpers. PointNeXt training/evaluation still uses custom CUDA/C++ operators that depend on the local Python, PyTorch, CUDA, compiler, and platform ABI. Build them from source:
 

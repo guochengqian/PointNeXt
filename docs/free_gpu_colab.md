@@ -10,7 +10,7 @@ A free GPU can test a small PointNeXt release path, but not every benchmark.
 
 These are suitable for:
 
-- `pip install openpoints pointnext-torch` import checks.
+- `pip install pointnext_official` import checks.
 - source checkout with CUDA op build.
 - ModelNet40 dataset auto-download.
 - ModelNet40 PointNeXt-S C=64 checkpoint download and SHA-256 verification.

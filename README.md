@@ -74,10 +74,10 @@ In the PointNeXt project, we propose a new and flexible codebase for point-based
 The Python libraries are released as installable packages:
 
 ```bash
-pip install openpoints pointnext-torch
+pip install pointnext_official
 ```
 
-`openpoints` provides the Python library. `pointnext-torch` provides PointNeXt release metadata and checkpoint download helpers, for example:
+`pointnext_official` installs `openpoints` as its core library dependency and provides PointNeXt release metadata and checkpoint download helpers, for example:
 
 ```bash
 pointnext-download --list

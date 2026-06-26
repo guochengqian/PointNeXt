@@ -3,7 +3,7 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pointnext-torch"
+name = "pointnext_official"
 version = "0.1.0"
 description = "PointNeXt release helpers, checkpoint download utilities, and metadata for pip-installed OpenPoints/PointNeXt users."
 readme = "README.md"
@@ -41,10 +41,10 @@ Issues = "https://github.com/guochengqian/PointNeXt/issues"
 Checkpoints = "https://huggingface.co/guochengqian/pointnext"
 
 [project.scripts]
-pointnext-download = "pointnext_torch.cli:main"
+pointnext-download = "pointnext_official.cli:main"
 
 [tool.setuptools]
-packages = ["pointnext_torch"]
+packages = ["pointnext_official"]
 include-package-data = true
 zip-safe = false
 

@@ -28,10 +28,10 @@ Each checkpoint should be uploaded with the exact config needed to load it. The 
 
 ## Download with the helper
 
-After `pointnext-torch` is installed, a known checkpoint can be downloaded with:
+After `pointnext_official` is installed, a known checkpoint can be downloaded with:
 
 ```bash
-pip install pointnext-torch
+pip install pointnext_official
 pointnext-download modelnet40-pointnext-s-c64 --output-dir ./hf_cache
 ```
 
